@@ -310,9 +310,14 @@ int main(int argc, char **argv)
 	
 	ROS_INFO("object_detect");
 	
-	templ = imread("/home/robot/catkin_ws/src/team_109/grab_109/src/label_qhd_color.jpg");
-	ROS_INFO("(w, h)=(%d, %d)", templ.cols, templ.rows);
-
+	std::string templpath = "/home/robot/catkin_ws/src/team_109/grab_109/src/label_qhd_color.jpg";
+	templ = imread(templpath);
+	if(templ.data == NULL){
+		//ROS_INFO("(w, h)=(%d, %d)", templ.cols, templ.rows);
+		ROS_ERROR("the file path %s does not exist", templpath);
+		return -1;
+	}
+	
 	tf_listener = new tf::TransformListener();
 	ros::NodeHandle nh;
 	ros::Subscriber rgb_sub = nh.subscribe(rgb_topic, 1, callbackRGB);

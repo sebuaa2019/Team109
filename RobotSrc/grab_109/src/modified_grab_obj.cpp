@@ -42,10 +42,10 @@ static float grab_forward_offset = 0.0f;    //手臂抬起后，机器人向前�
 static float grab_gripper_value = 0.032;    //抓取物品时，手爪闭合后的手指间距
 
 #define STEP_WAIT           0
-//取消了平面检测
-#define STEP_FIND_PLANE     1
+//改变检测策略，先检测标签，进而检测平面
+#define STEP_FIND_OBJ       1
+#define STEP_FIND_PLANE     2
 #define STEP_PLANE_DIST     2
-#define STEP_FIND_OBJ       3
 #define STEP_OBJ_DIST       4
 #define STEP_HAND_UP        5
 #define STEP_FORWARD        6
@@ -55,12 +55,15 @@ static float grab_gripper_value = 0.032;    //抓取物品时，手爪闭合后�
 #define STEP_DONE           10
 static int nStep = STEP_WAIT;
 
-
+static std::string rgb_topic;
 static std::string pc_topic;
+
+static ros::Publisher rgb_pub;
 static ros::Publisher pc_pub;
 static ros::Publisher marker_pub;
 static ros::Publisher vel_pub;
 static ros::Publisher mani_ctrl_pub;
+
 static sensor_msgs::JointState mani_ctrl_msg;
 static ros::Publisher result_pub;
 static tf::TransformListener *tf_listener; 
@@ -107,7 +110,12 @@ typedef struct stBoxMarker
 
 static stBoxMarker boxMarker;
 static stBoxMarker boxPlane;
-static stBoxMarker obj_to_track;
+//static stBoxMarker obj_to_track;
+static bool find_obj = false; // 标记是否找到物体
+//static cv::Rect obj_to_track; // 记录物体在RGB图中的位置
+
+static cv::Point tl; // 矩形框左上角
+static cv::Point br; // 矩形框右下角
 
 static int nTimeDelayCounter = 0;
 static int nFrameCount = 0;
@@ -125,6 +133,72 @@ static stBoxMarker boxLastObject;
 static int nObjDetectCounter = 0;
 
 void 
+ProcImageCB(const sensor_msgs::ImageConstPtr& image)
+{
+	if(nStep != STEP_FIND_OBJ) return;
+	
+	//将传感器图片转为Mat
+	cv_bridge::CvImagePtr cv_ptr;
+	try{
+		cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
+	}catch(cv_bridge::Exception& e){
+		ROS_ERROR("cv_bridge exception: %s", e.what());
+		return;
+	}
+	//cv_ptr->image.convertTo(frame_gray);
+	//cvtColor(cv_ptr->image, frame_gray, CV_BGR2GRAY);
+	
+	//保存图像
+	//std::ostringstream stringStream;
+	//stringStream << "/home/robot/catkin_ws/src/team_109/grab_109/src/pic/pic_" << nFrameNum++;
+	//std::string frame_id = stringStream.str();
+	//imwrite(frame_id+".jpg", cv_ptr->image);
+	//ROS_INFO("(w, h)=(%d, %d)", frame_gray.cols, frame_gray.rows);
+
+	matchTemplate(cv_ptr->image, templ, objects, match_method);
+	normalize(objects, objects, 0, 1, NORM_MINMAX, -1, Mat() );
+	double minVal, maxVal, val;
+	Point minLoc, maxLoc, matchLoc;
+	
+	minMaxLoc(objects, &minVal, &maxVal, &minLoc, &maxLoc, Mat());
+	if( match_method  == TM_SQDIFF || match_method == TM_SQDIFF_NORMED ){
+		matchLoc = minLoc; 
+		val = minVal;
+	}
+	else{ 
+		matchLoc = maxLoc; 
+		val = maxVal;
+	}
+	
+	tl.x = matchLoc.x; tl.y = matchLoc.y;
+	br.x = tl.x + templ.cols; br.y = tl.y + templ.rows;
+	
+	//obj_tp_track.x = matchLoc.x; obj_tp_track.y = matchLoc.y;
+	//obj_tp_track.width = templ.cols; obj_tp_track.height = templ.rows;
+	
+	ROS_INFO("[callbackRGB] (x,y,width,height)=(%d,%d,%d,%d) maxVal=%.2f", obj_tp_track.x,obj_tp_track.y,obj_tp_track.width,obj_tp_track.height,val);
+
+	if(fabs(val - thresholdVal)<0.001){ // 检测到标签
+		find_obj = true;
+		
+		rectangle(cv_ptr->image,
+		tl,
+		br,
+		CV_RGB(255, 0 , 255),
+		10);
+		
+		
+	}else{
+		find_obj = false;
+		ROS_INFO("[ProcImageCB FIND_OBJ] no object");
+	}
+	
+	rgb_pub.publish(cv_ptr->toImageMsg());
+	
+}
+
+
+void 
 ProcCloudCB(const sensor_msgs::PointCloud2 &input)
 {
 	sensor_msgs::PointCloud2 pc_footprint;
@@ -135,100 +209,56 @@ ProcCloudCB(const sensor_msgs::PointCloud2 &input)
     pcl::PointCloud<pcl::PointXYZRGB> cloud_src;
     pcl::fromROSMsg(pc_footprint , cloud_src);
     //ROS_INFO("cloud_src size = %d",cloud_src.size()); 
-    pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_source_ptr;
+    //pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_source_ptr;
 	////////////////////////////////////
-	//新构建一个点云，只取一部分
-	PointCloud new_point_cloud;
 	
-	cv::Rect objRect(0, 0, 0, 0);
+
 	//数据处理
-	//需要分割平面，防止物体过于靠近平面内部
 	if(nStep == STEP_FIND_PLANE || nStep==STEP_FIND_OBJ){
 		
-		//callbackRGB(); //?
-		PointCloud::Ptr plane(new PointCloud);
-		PointCloud::Ptr convexHull(new PointCloud);
-		
-		pcl::ModelCoefficients::Ptr coefficients(new pcl::ModelCoefficients);
-        pcl::SACSegmentation<pcl::PointXYZRGB> segmentation;
-        segmentation.setInputCloud(cloud_source_ptr);
-        segmentation.setModelType(pcl::SACMODEL_PLANE);
-        segmentation.setMethodType(pcl::SAC_RANSAC);
-        segmentation.setDistanceThreshold(0.005);
-        segmentation.setOptimizeCoefficients(true);
-        pcl::PointIndices::Ptr planeIndices(new pcl::PointIndices);
-        segmentation.segment(*planeIndices, *coefficients);
-        //ROS_INFO_STREAM("Num_Of_Planes = " << planeIndices->indices.size());
-        pcl::ExtractIndices<pcl::PointXYZRGB> extract;
-		
-		
-		RemoveBoxes();
-        pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_f (new pcl::PointCloud<pcl::PointXYZRGB>);
-        int i = 0, nr_points = (int) cloud_source_ptr->points.size ();
-        // While 30% of the original cloud is still there
-        while (cloud_source_ptr->points.size () > 0.03 * nr_points)
-        {
-            // Segment the largest planar component from the remaining cloud
-            segmentation.setInputCloud (cloud_source_ptr);
-            segmentation.segment (*planeIndices, *coefficients);
-            if (planeIndices->indices.size () == 0)
-            {
-                ROS_WARN("Could not estimate a planar model for the given dataset.");
-                break;
-            }
+		if(find_obj){ // 在RGB图中寻找物体
+			
+			nObjDetectCounter ++; // 累积检测次数
+			
+			RemoveBoxes();
+			
+			float plane_height = 0.0;
+			// 确定平面的高度，假设物体放在平面上
+			for(int k=tl.x; k<= br.x; k++){
+				plane_height += (cloud_src.points[br.y * input.width + k]).z;
+			}
+			plane_height /= br.x - tl.x;
+			fPlaneHeight = plane_height;
+			
+			// 确定标签的空间位置
+			int index_tl = tl.y * input.width + tl.x;
+			int index_br = br.y * input.width + br.x;
+			
+			pcl::PointXYZRGB ptl = cloud_src.points[index_tl];
+			pcl::PointXYZRGB pbr = cloud_src.points[index_br];
 
-            // Extract the planeIndices
-            extract.setInputCloud (cloud_source_ptr);
-            extract.setIndices (planeIndices);
-            extract.setNegative (false);
-            extract.filter (*plane);
-            float plane_height = 0;
-            for(int k=0; k<plane->width * plane->height ;k ++ )
+			//RemoveBoxes();
+			boxMarker.xMin = min(ptl.x, pbr.x);
+			boxMarker.xMax = max(ptl.x, pbr.x);
+			boxMarker.yMin = min(ptl.y, pbr.y);
+			boxMarker.yMax = max(ptl.y, pbr.y);
+			boxMarker.zMin = min(ptl.z, pbr.z);
+			boxMarker.zMax = max(ptl.z, pbr.z);
+			
+			
+			if(boxMarker.xMin < 1.5 && boxMarker.yMin > -0.5 && boxMarker.yMax < 0.5)   //物品所处的空间限定
             {
-                plane_height += plane->points[k].z;
-            }
-            plane_height /= plane->width * plane->height;
-            //ROS_WARN("%d - plane: %d points. height =%.2f" ,i, plane->width * plane->height,plane_height);
-            fPlaneHeight = plane_height;
-           
-            bool bFirstPoint = true;
-            for (int j = 0; j < plane->points.size(); j++) 
-            {
-                pcl::PointXYZRGB p = plane->points[j];
-                if(bFirstPoint == true)
-                {
-                    boxPlane.xMax = boxPlane.xMin = p.x;
-                    boxPlane.yMax = boxPlane.yMin = p.y;
-                    boxPlane.zMax = boxPlane.zMin = p.z;
-                    bFirstPoint = false;
-                }
-
-                if(p.x < boxPlane.xMin) { boxPlane.xMin = p.x;}
-                if(p.x > boxPlane.xMax) { boxPlane.xMax = p.x;}
-                if(p.y < boxPlane.yMin) { boxPlane.yMin = p.y;}
-                if(p.y > boxPlane.yMax) { boxPlane.yMax = p.y;}
-                if(p.z < boxPlane.zMin) { boxPlane.zMin = p.z;}
-                if(p.z > boxPlane.zMax) { boxPlane.zMax = p.z;}
-            } 
-            //////////////////////////////////
-            //测试：将平面用框框框起来
-            DrawBox(boxPlane.xMin, boxPlane.xMax, boxPlane.yMin, boxPlane.yMax, boxPlane.zMin, boxPlane.zMax, 1, 0, 1);
-            //ROS_WARN("[FIND_PLANE] x= (%.2f , %.2f) y=(%.2f , %.2f) z=(%.2f , %.2f)" ,boxPlane.xMin,boxPlane.xMax,boxPlane.yMin,boxPlane.yMax,boxPlane.zMin,boxPlane.zMax);
-            ///////////////////////////////////
-            if(plane_height > 0.5 && plane_height < 0.85) 
-            break;
-
-            // Create the filtering object
-            extract.setNegative (true);
-            extract.filter (*cloud_f);
-            cloud_source_ptr.swap (cloud_f);
-            i++;
-        }
+                DrawBox(boxMarker.xMin, boxMarker.xMax, boxMarker.yMin, boxMarker.yMax, boxMarker.zMin, boxMarker.zMax, 0, 1, 0);
+				DrawText("object x",0.08, boxMarker.xMax,(boxMarker.yMin+boxMarker.yMax)/2,boxMarker.zMax + 0.04, 1,0,1);
+			}
+			
+			boxLastObject = boxMarker;
+			
+		}else{
+			nObjDetectCounter= 0;
+			ROS_INFO("[ProcCloudCB FIND_OBJ] no object");
+		}
 		
-		if(planeIndices->indices.size() == 0)
-			ROS_WARN("could not find a plane");
-		else
-			ProcessRGB(objRect); //检测桌面上的标签
 	}
 	
 	
@@ -236,7 +266,7 @@ ProcCloudCB(const sensor_msgs::PointCloud2 &input)
 	
 	/////////////////////////////////////////////////////////////
 	/*二、有限状态机 *************************************************************************************************/
-    //1、左右运动：统计识别次数，确认平面
+    //1、统计识别次数，确认平面
 	if(nStep == STEP_FIND_PLANE){
 		mani_ctrl_msg.position[0] =0;
 		mani_ctrl_msg.position[1] = 0.16;
@@ -249,16 +279,19 @@ ProcCloudCB(const sensor_msgs::PointCloud2 &input)
 			nPlaneHeightCounter = 0;
 		}
 		ROS_WARN("[FIND_PLANE] z= %.2f xm= %.2f y=(%.2f , %.2f) counter= %d" ,fPlaneHeight,boxPlane.xMin,boxPlane.yMin,boxPlane.yMax,nPlaneHeightCounter);
-        if(nPlaneHeightCounter > 10)
+        
+		if(nPlaneHeightCounter > 10)
         {
             nPlaneHeightCounter = 0;
             nTimeDelayCounter = 0;
             nStep = STEP_PLANE_DIST;
-            fMoveTargetX = boxPlane.xMin - 0.7;
-            fMoveTargetY = 0;
+            //fMoveTargetX = boxPlane.xMin - 0.7;
+            //fMoveTargetY = 0;
         }
         result_msg.data = "find plane";
         result_pub.publish(result_msg);
+		
+		
 	}
 	
 	//2、前后运动：控制到平面的距离
@@ -569,11 +602,24 @@ main(int argc, char** argv)
 	tf_listener = new tf::TransformListener();
 	
 	ros::NodeHandle nh_param("~");
-	nh_param.param<std::string>("topic", pc_topic, "/kinect2/sd/points");
+	nh_param.param<std::string>("rgb_topic", rgb_topic, "/kinect2/qhd/image_color");
+	nh_param.param<std::string>("topic", pc_topic, "/kinect2/qhd/points");
+	
+	std::string templpath = "/home/robot/catkin_ws/src/team_109/grab_109/src/label_qhd_color.jpg";
+	templ = imread(templpath);
+	if(templ.data == NULL){
+		//ROS_INFO("(w, h)=(%d, %d)", templ.cols, templ.rows);
+		ROS_ERROR("the file path %s does not exist", templpath);
+		return -1;
+	}
+	
 	
 	ros::NodeHandle nh;
-	ros::Subscriber pc_sub = nh.subscribe(pc_topic, 1, ProcCloudCB);
 	
+	ros::Subscriber rgb_sub = nh.subscribe(rgb_topic, 1, callbackRGB);
+	ros::Subscriber pc_sub = nh.subscribe(pc_topic, 1, callbackPointCloud);
+	
+	rgb_pub = nh.advertise<sensor_msgs::Image>("/object/image", 2);
 	pc_pub = nh.advertise<sensor_msgs::PointCloud2>("obj_pointcloud",1);
     marker_pub = nh.advertise<visualization_msgs::Marker>("obj_marker", 10);
 	
