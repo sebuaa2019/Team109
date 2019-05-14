@@ -7,6 +7,8 @@ def callback(data):
     '''control Callback Function'''
     rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
 
+    
+
 def listener():
     '''control Subscriber'''
     # In ROS, nodes are uniquely named. If two nodes with the same
