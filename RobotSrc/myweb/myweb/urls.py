@@ -20,4 +20,6 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('home/',TemplateView.as_view(template_name='index.html'),name = 'home'),
+    path('movebase/',TemplateView.as_view(template_name='movebase.html'),name = 'home')
 ]
