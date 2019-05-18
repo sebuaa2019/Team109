@@ -223,3 +223,11 @@ add_dependencies(test_voice ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTE
 target_link_libraries(test_voice
   ${catkin_LIBRARIES}
 )
+
+add_executable(test_dfs
+  src/test_dfs.cpp
+)
+add_dependencies(test_dfs ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(test_dfs
+  ${catkin_LIBRARIES}
+)

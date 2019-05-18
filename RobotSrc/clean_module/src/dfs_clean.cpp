@@ -9,14 +9,14 @@ int mode; // 0:dfs, 1:zigzag
 int level;
 void args_init(int argc, char** argv){
     mode = 0, level = 0;
-    printf("%d\n", argc);
+    ROS_INFO("[dfs_clean] argc: %d\n", argc);
     if (argc >= 2){
         mode = argv[1][0] - '0';
     }
     if (argc >= 3){
         level = argv[2][0] - '0';
     }
-    printf("init args:[mode:%d][level:%d]\n", mode, level);
+    ROS_INFO("[dfs_clean] init args:[mode:%d][level:%d]\n", mode, level);
 }
 
 // 0, 1, 2, 3
@@ -46,7 +46,7 @@ bool move(int x, int y, MoveBaseClient &ac, tf::Quaternion &q, float du = 6.0){
         if (!stop) break;
     }
 
-    printf("try to move to (%d,%d)\n", x, y);
+    ROS_INFO("[dfs_clean] try to move to (%d,%d)\n", x, y);
     move_base_msgs::MoveBaseGoal newWayPoint;
     //q.setRPY(0,0,0);
     
@@ -61,12 +61,12 @@ bool move(int x, int y, MoveBaseClient &ac, tf::Quaternion &q, float du = 6.0){
     ac.sendGoal(newWayPoint);
     ac.waitForResult(ros::Duration(du));
     if (ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
-        printf("move to (%d,%d) succeeded\n", x, y);
+        ROS_INFO("[dfs_clean] move to (%d,%d) succeeded\n", x, y);
         return 1;
     }
     else {
         ac.cancelAllGoals();
-        printf("move to (%d,%d) failed\n", x, y);
+        ROS_INFO("[dfs_clean] move to (%d,%d) failed\n", x, y);
         return 0;
     }
 }
@@ -107,26 +107,26 @@ void dfs(int x, int y, MoveBaseClient &ac, int dir){
         }
     }
 
-    printf("try to go back...\n");
+    ROS_INFO("[dfs_clean] try to go back...\n");
     move(x, y, ac, q[rev[dir]]);
 }
 
 
 
 void voiceCB(const std_msgs::String::ConstPtr &msg){
-    printf("[test_voice]: %s\n", msg->data.c_str());
+    ROS_INFO("[dfs_clean][test_voice]: %s\n", msg->data.c_str());
     int ret = 0;
-    ret = msg->data.find("Stop"); 
+    ret = msg->data.find("Stop") + msg->data.find("stop"); 
 
     if ( ret >= 0){
-        printf("[test_voice]: get Stop: %d\n", ret);
+        ROS_INFO("[dfs_clean][test_voice]: get Stop: %d\n", ret);
         stop = true;
         return;
     }
 
-    ret = msg->data.find("Go");
+    ret = msg->data.find("Go") + msg->data.find("go");
     if ( ret >= 0){
-        printf("[test_voice]: get Go: %d\n", ret);
+        ROS_INFO("[dfs_clean][test_voice]: get Go: %d\n", ret);
         stop = false;
         return;
     }
@@ -144,18 +144,18 @@ int main(int argc, char** argv){
 
     // 休眠5s, 确认导航服务已经开启
     while (!ac.waitForServer(ros::Duration(5.0))){
-        ROS_INFO("Waiting for the move_base action server to come up");
+        ROS_INFO("[dfs_clean] Waiting for the move_base action server to come up");
     }
 
     clean_init();
 
     setVis(ori_x, ori_y);
     if (move(ori_x, ori_y, ac, q[0], 10.0)){
-        ROS_INFO("init the position");
+        ROS_INFO("[dfs_clean] init the position");
         dfs(ori_x, ori_y, ac, 0);
     }
     else{
-        ROS_INFO("position initial failed");
+        ROS_INFO("[dfs_clean] position initial failed");
     }
 
     return 0;

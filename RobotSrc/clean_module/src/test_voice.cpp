@@ -2,7 +2,7 @@
 #include <std_msgs/String.h>
 
 void voiceCB(const std_msgs::String::ConstPtr &msg){
-    printf("[test_voice]: %s\n", msg->data.c_str());
+    ROS_INFO("[test_voice]: %s\n", msg->data.c_str());
 }
 
 int main(int argc, char** argv){
