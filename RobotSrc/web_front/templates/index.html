@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <br>
+    <div style="text-align: left; margin-left: 50px; margin-right: 50px">
+        {% for log in logs %}
+            <span>{{ log }} <br /></span>
+        {% endfor %}
+    </div>
+
+    {# 实现分页标签的代码 #}
+    {# 这里使用 bootstrap 渲染页面 #}
+    <div id="pages" class="text-center" >
+        <nav>
+            <ul class="pagination">
+                <li class="step-links">
+                {% if logs.has_previous %}
+                    <a class='active' href="?page={{ logs.previous_page_number }}">上一页</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ logs.number }} of {{ logs.paginator.num_pages }}</span>
+
+                {% if logs.has_next %}
+                    <a class='active' href="?page={{ logs.next_page_number }}">下一页</a>
+                {% endif %}
+                </li></ul></nav></div>
+</body>
+</html>
