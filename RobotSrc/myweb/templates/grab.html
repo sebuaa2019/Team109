@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% block main %}
+<div class="col-md-6">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">map</h4>
+    </div>
+    <div class="card-body">
+      <img src="{% static 'img/map.jpg' %}" height=350>
+    </div>
+  </div>
+</div>
+<div class="col-md-6">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">choose label</h4>
+    </div>
+    <div class="card-body">
+      <div class="form-page-div">
+        <form class="form-page" method="post" action="/grab/">
+          {% csrf_token %}
+          <p class="demo">
+          <ul class="list-group">
+              {% for p in pic %}
+              <li class="list-group-item">
+                  <div class="col">
+                  <img src="{% static p.1 %}" height=40>
+                  <input type="radio" name="pic"  style="width:20px;height:20px;left:80px;bottom:10px;" value="pic{{p.0}}">
+                  </div>
+              </li>
+              {% endfor%}
+          </ul>
+          </p>
+          <input type="radio" name="pic" id="labelpic" value="pic4"/>
+          <p class="demo">
+          <input class="btn-default btn btn-lg btn-round" type="submit" value="fetch object">
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
