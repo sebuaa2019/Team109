@@ -1,8 +1,11 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block main %}
+<img src="{% static 'img/map.jpg' %}" height=200>
 <div class="form-page-div">
     <form class="form-page" method="post" action="/clean">
         {% csrf_token %}
+        <img src="{% static 'img/tmp.jpg' %}" height=40><input type="radio" name="pic" value="pic1">
         <input class="btn btn-lg btn-block btn-primary" type="submit" value="打扫">
     </form>
 </div>

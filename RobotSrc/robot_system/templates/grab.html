@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% block main %}
+<img src="{% static 'img/map.jpg' %}" height=300>
+<div class="form-page-div">
+    <form class="form-page" method="post" action="/clean">
+        {% csrf_token %}
+        选择标签
+        <ul>
+          <li>
+            <img src="{% static 'img/tmp.jpg' %}" height=40>
+            <input class="radio-inline" type="radio" name="pic" value="pic1">
+          </li>
+          <li>
+            <img src="{% static 'img/tmp.jpg' %}" height=40>
+            <input class="radio-inline" type="radio" name="pic" value="pic2">
+          </li>
+          <li>
+            <img src="{% static 'img/tmp.jpg' %}" height=40>
+            <input class="radio-inline" type="radio" name="pic" value="pic3">
+          </li>
+        </ul>
+        <input class="btn btn-lg" type="submit" value="取物">
+    </form>
+</div>
+{% endblock %}
