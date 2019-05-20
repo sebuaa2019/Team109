@@ -223,22 +223,48 @@
 										<p class="card-category">You can contol the robot through this button</p>
 									</div>
 									<div class="card-body">
+                                        <p class="demo">
+                                            <h4 class="card-title">Begin Control</h4>
+                                            <br />
+											<button class="btn btn-danger btn-round" onclick="api_move('Begin');">Begin</button>
+                                            <br />
+										</p>
+                                        <h4 class="card-title">Control Button</h4>
+                                        <br />
 										<p class="demo">
-											<button class="btn btn-default btn-lg btn-round">Turn Left</button>
-											<button class="btn btn-primary btn-lg btn-round">Forwards</button>
-											<button class="btn btn-success btn-lg btn-round">Turn right</button>
+											<button class="btn btn-default btn-lg btn-round" onclick="api_move('Turn Left');">Turn Left</button>
+                                            <button class="btn btn-success btn-lg btn-round" onclick="api_move('Turn Right');">Turn Right</button>
 										</p>
 
                                         <p class="demo">
-											<button class="btn btn-success btn-lg btn-round">Move left</button>
-											<button class="btn btn-warning btn-lg btn-round">Backward</button>
-											<button class="btn btn-danger btn-lg btn-round">Move right</button>
+                                            <button class="btn btn-primary btn-lg btn-round" onclick="api_move('Forwards');">Forwards</button>
+											<button class="btn btn-warning btn-lg btn-round" onclick="api_move('Backward');">Backward</button>
+										</p>
+
+                                        <p class="demo">
+                                            <button class="btn btn-success btn-lg btn-round" onclick="api_move('Move Left');">Move Left</button>
+											<button class="btn btn-danger btn-lg btn-round" onclick="api_move('Move Right');">Move Right</button>
 										</p>
 
                                         <p class="demo">
                                             <h4 class="card-title">Stop Button</h4>
-											<input type="checkbox" checked data-toggle="toggle" data-onstyle="primary" data-style="btn-round">
+                                        <br />
+											<button class="btn btn-danger btn-round" onclick="api_move('Stop');">Stop</button>
 										</p>
+									</div>
+                                    <div class="card-footer">
+										<div class="legend"><i class="la la-circle text-primary"></i> Move</div>
+									</div>
+								</div>
+							</div>
+                            <div class="col-md-3">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">Speed Indicator</h4>
+										<p class="card-category">You can View the speed here</p>
+									</div>
+									<div class="card-body">
+
 									</div>
                                     <div class="card-footer">
 										<div class="legend"><i class="la la-circle text-primary"></i> Move</div>
@@ -247,6 +273,7 @@
 							</div>
                         </div>
                         <div class="row">
+
                              <div class="col-md-9">
 								<div class="card">
 									<div class="card-header">
@@ -254,7 +281,10 @@
 										<p class="card-category">You can build your own map in a new scene</p>
 									</div>
 									<div class="card-body">
-
+                                        <p class="demo">
+                                            <button class="btn btn-default btn-lg btn-round" onclick="api_move('Begin Mapping');">Begin Mapping</button>
+											<button class="btn btn-primary btn-lg btn-round" onclick="api_move('Save Your Map');">Save Your Map</button>
+										</p>
 									</div>
                                     <div class="card-footer">
 										<div class="legend"><i class="la la-circle text-primary"></i> Map</div>
@@ -268,6 +298,25 @@
 		</div>
 	</div>
 	<!-- Modal -->
+	<script>
+		function api_move(type) {
+			$.ajax({
+				method: "POST",
+				url: "{% url 'api_move' %}",
+				dataType: 'json',
+				data: {
+					json_data: JSON.stringify({
+						"type": type,
+						// 填入你的数据
+					}),
+					csrfmiddlewaretoken: '{{ csrf_token }}'
+				},
+				success: function(response) {
+					console.log(response.status)
+				}
+			})
+		}
+	</script>
 </body>
 
 <script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
