@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html xmlns:shiro="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>RobotSystem - 首页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link rel="icon" href="/img/favicon.png" type="image/png" />
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <link href="https://at.alicdn.com/t/font_1153083_j5ucjqyx1qa.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/home.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+	<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
+	<link href="http://fonts.googleapis.com/css?family=Poppins:100i,200,200i,300,400,400i,500,500i,600,600i,700,700i,800" rel="stylesheet">
+        <!-- More Links -->
+    
+</head>
+
+<body>
+    <header>
+		<div class="header_top" id="home">
+			<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+				<a class="navbar-brand" href="introduction.html">
+					<i class="fab"></i> Robot System</a>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mx-auto tp-nav text-center">
+						<li class="nav-item active">
+							<a class="nav-link" href="#home">Home
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#About">About</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#Login">Login</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="#Contact">Contact</a>
+						</li>
+					</ul>
+					<form action="#" method="post" class="form-inline my-2 my-lg-0 search">
+						<input class="form-control mr-sm-2" type="search" placeholder="Search here..." name="Search" required="">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					</form>
+
+				</div>
+			</nav>
+		</div>
+	</header>
+
+    <main class="main">
+        
+        <div class="my-jumbotron">
+            <div class="container">
+                <div class="">
+                    <span class="navbar-brand" style="opacity: 1">
+                        <div style="width:90px; height:80px; display: inline-block; vertical-align: middle;">
+                            <i class="iconfont icon-wuli" style="font-size: 90px; line-height: 80px;"></i>
+                        </div>
+                        <span style="font-size:45px;">Robot System</span>
+                        <h5 style="font-size:1.5rem" class="mt-2 mb-0">发现机器人的乐趣</h5>
+                    </span>
+                </div>
+                <hr class="my-3">
+
+                <p class="lead mt-5">
+                    <a class="btn btn-primary btn-lg" href="/movebase/" role="button">进入控制系统</a>
+                </p>
+            </div>
+        </div>
+        <div class="container marketing">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="bd-placeholder-img rounded-circle">
+                        <i class="iconfont icon-bianjie" style="font-size: 80px"></i>
+                    </div>
+                    <h2>便捷</h2>
+                    <p class="lead">无需繁琐的命令，轻巧按钮，<br>便可轻松操控机器人</p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="bd-placeholder-img rounded-circle">
+                        <i class="iconfont icon-guifan" style="font-size: 80px"></i>
+                    </div>
+                    <h2>规范</h2>
+                    <p class="lead">与ROS平台完美交互，响应快速<br>灵巧的控制你的机器人</p>
+                </div>
+                <div class="col-lg-4">
+                    <div class="bd-placeholder-img rounded-circle">
+                        <i class="iconfont icon-jingzhun" style="font-size: 80px"></i>
+                    </div>
+                    <h2>准确</h2>
+                    <p class="lead">与ROS完成精确的信息交互，<br>让误差降到最小</p>
+                </div>
+            </div>
+        </div>
+    
+    </main>
+    <footer>
+        <div class="footer-main bg-dark py-3 small">
+            <div class="container">
+                <div class="row">
+                    <div class="col mr-auto my-auto">
+                        <a href="#">Robot System</a>
+                        is a project created and maintained by
+                        <a href="#">TEAM-109</a>.
+                        <br>
+                        Copyright @2016-2019 <a href="#">Robot System</a>.
+                    </div>
+                    <div class="">
+                        <span class="navbar-brand" style="opacity: .5">
+                            <div style="width:60px; height:60px; display: inline-block; vertical-align: middle;">
+                                <i class="iconfont icon-wuli" style="font-size: 60px; line-height: 59px;"></i>
+                            </div>
+                            <span style="font-size:30px;">Robot System</span>
+                            <h5 style="font-size:1.15rem" class="mt-2 mb-0">发现机器人的乐趣</h5>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+</body>
+
+
+</html>
