@@ -204,5 +204,14 @@ target_link_libraries(obj_detect
   ${catkin_LIBRARIES}
 )
 
+add_executable(grab_obj
+  src/grab_obj.cpp
+)
+add_dependencies(grab_obj ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(grab_obj
+  ${catkin_LIBRARIES}
+)
+
+
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)

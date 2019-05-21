@@ -7,7 +7,14 @@ project(grab_109)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED COMPONENTS
+  roscpp rospy std_msgs 
+  pcl_conversions pcl_ros 
+  cv_bridge image_transport tf 
+  sensor_msgs geometry_msgs std_msgs visualization_msgs 
+  image_geometry message_generation
+  move_base_msgs actionlib 
+)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -104,7 +111,8 @@ catkin_package(
 #  CATKIN_DEPENDS other_catkin_pkg
 #  DEPENDS system_lib
 )
-
+include_directories(include ${PCL_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
+link_directories(${PCL_LIBRARY_DIRS} ./data)
 ###########
 ## Build ##
 ###########
@@ -187,6 +195,14 @@ catkin_package(
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
+## Declare a C++ executable
+add_executable(obj_detect
+  src/obj_detect.cpp
+)
+add_dependencies(obj_detect ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(obj_detect
+  ${catkin_LIBRARIES}
+)
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
