@@ -39,6 +39,9 @@
 //using namespace std;
 using namespace cv;
 
+// 设置默认模板图像
+static std::string default_templ = "/home/robot/catkin_ws/src/team_109/grab_109/src/label_qhd_color.jpg";
+
 // 抓取参数调节（单位：米）
 static float grab_y_offset = -0.1f;          //抓取前，对准物品，机器人的横向位移偏移量
 static float grab_lift_offset = 0.20f;       //手臂抬起高度的补偿偏移量
@@ -657,7 +660,7 @@ move(std::string rlt_msg, std::string ctl_msg)
 int 
 main(int argc, char** argv)
 {
-	ros::init(argc, argv, "modified_grab_obj");
+	ros::init(argc, argv, "grab_obj");
 	ROS_INFO("my_grab_object");
 	tf_listener = new tf::TransformListener();
 	
@@ -665,7 +668,11 @@ main(int argc, char** argv)
 	nh_param.param<std::string>("rgb_topic", rgb_topic, "/kinect2/qhd/image_color");
 	nh_param.param<std::string>("topic", pc_topic, "/kinect2/qhd/points");
 	
-	std::string templpath = "/home/robot/catkin_ws/src/team_109/grab_109/src/label_qhd_color.jpg";
+	std::string templpath;
+	// 可以通过命令行设置模板图像 rosrun grab_109 grab_obj _templ_img:= filepath
+	nh_param.param<std::string>("templ_img", templpath, default_templ);
+	
+	//std::string templpath = "/home/robot/catkin_ws/src/team_109/grab_109/src/label_qhd_color.jpg";
 	templ = imread(templpath);
 	if(templ.data == NULL){
 		//ROS_INFO("(w, h)=(%d, %d)", templ.cols, templ.rows);
