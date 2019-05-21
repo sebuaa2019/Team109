@@ -4,6 +4,8 @@
 #include <tf/tf.h>
 #include <tf/transform_listener.h>
 #include <std_msgs/String.h>
+#include <rosgraph_msgs/Log.h>
+
 
 int mode; // 0:dfs, 1:zigzag
 int level;
@@ -24,9 +26,10 @@ const float pi = 3.14;
 int mv_x[] = {1, 0, -1, 0};
 int mv_y[] = {0, 1, 0, -1};
 int rev[] = {2, 3, 0, 1};
+int zigzag_dir[] = {0, 2, 1, 3};
 int ori_x, ori_y;
 tf::Quaternion q[4]; 
-bool stop = false;
+bool stop, logErr;
 void clean_init(){
     q[0].setRPY(0, 0, 0);
     q[1].setRPY(0, 0, 0.5*pi);
@@ -37,13 +40,12 @@ void clean_init(){
 
 // 导航目标结构体
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
-bool move(int x, int y, MoveBaseClient &ac, tf::Quaternion &q, float du = 6.0){
+bool move(int x, int y, MoveBaseClient &ac, tf::Quaternion &q, float du = 10.0){
     ros::Rate r(1);         //while函数的循环周期,这里为1Hz
-    while(ros::ok())        //程序主循环
+    while(ros::ok() && stop)        //程序主循环
     {
         ros::spinOnce();        //短时间挂起,让回调函数得以调用
         r.sleep(); 
-        if (!stop) break;
     }
 
     ROS_INFO("[dfs_clean] try to move to (%d,%d)\n", x, y);
@@ -59,7 +61,18 @@ bool move(int x, int y, MoveBaseClient &ac, tf::Quaternion &q, float du = 6.0){
     newWayPoint.target_pose.pose.orientation.w = q.w();
     
     ac.sendGoal(newWayPoint);
-    ac.waitForResult(ros::Duration(du));
+    
+
+    int time = 0;
+    logErr = 0;
+    while(ros::ok() && time < int(du)){
+        ros::spinOnce();        //短时间挂起,让回调函数得以调用
+        r.sleep();
+        time ++;
+		if (ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) break;
+		if (logErr) break;
+    }
+
     if (ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
         ROS_INFO("[dfs_clean] move to (%d,%d) succeeded\n", x, y);
         return 1;
@@ -67,7 +80,8 @@ bool move(int x, int y, MoveBaseClient &ac, tf::Quaternion &q, float du = 6.0){
     else {
         ac.cancelAllGoals();
         ROS_INFO("[dfs_clean] move to (%d,%d) failed\n", x, y);
-        return 0;
+		logErr = 0;
+		return 0;
     }
 }
 
@@ -83,7 +97,7 @@ void setVis(int x, int y){
 
 void dfs(int x, int y, MoveBaseClient &ac, int dir){
     for (int off = 0, _dir, _x, _y; off < 4; off ++){
-        _dir = (dir + off) % 4;
+        _dir = mode ? zigzag_dir[off] : (dir + off) % 4;
         _x = x + mv_x[_dir], _y = y + mv_y[_dir];
         
         if (!over(_x, _y)){
@@ -96,14 +110,9 @@ void dfs(int x, int y, MoveBaseClient &ac, int dir){
                 }
 
 
-                if (mode == 1 && dir != _dir){ // zigzag: turn point
-                    _dir ++;
-                }
-
                 dfs(_x, _y, ac, _dir);
             }
 
- 
         }
     }
 
@@ -132,12 +141,22 @@ void voiceCB(const std_msgs::String::ConstPtr &msg){
     }
 }
 
+void rosoutCB(const rosgraph_msgs::Log::ConstPtr& msg){
+	if (msg->level == rosgraph_msgs::Log::ERROR){
+        
+    	logErr = 1;
+	}
+	printf("[dfs_clean] FIND LOG ERR\n");
+}
+
 int main(int argc, char** argv){
     ros::init(argc, argv, "dfs_clean");
     args_init(argc, argv);
 
     ros::NodeHandle n;
     ros::Subscriber sub_sr = n.subscribe("/xfyun/iat", 10, voiceCB);
+    ros::Subscriber rosout_sb = n.subscribe("/rosout", 0, rosoutCB);
+
 
     // 调用和主管监控导航功能的服务
     MoveBaseClient ac("move_base", true);
