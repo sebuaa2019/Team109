@@ -1,168 +1,160 @@
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
-hello world
-hello world hello world
-hello world hello world
-hello world
-hello world
-
-hello worldhello worldhello worldhello world
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
+1556968600.711265468  Node Startup
+1556968601.533629498 WARN [/tmp/binarydeb/ros-kinetic-robot-state-publisher-1.13.6/src/joint_state_listener.cpp:171(main) [topics: /rosout] The 'state_publisher' executable is deprecated. Please use 'robot_state_publisher' instead
+1556968606.306152105 INFO [joint_state_publisher:418(center) [topics: /rosout] Centering
+1556968606.735148832 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:430(RenderWindow* rviz::RenderSystem::makeRenderWindow) [topics: /rosout] Stereo is NOT SUPPORTED
+1556968606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout] OpenGl version: 2.1 (GLSL 1.2).
