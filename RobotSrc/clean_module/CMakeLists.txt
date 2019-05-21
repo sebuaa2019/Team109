@@ -208,10 +208,26 @@ target_link_libraries(dfs_clean
   ${catkin_LIBRARIES}
 )
 
-add_executable(test_map
-  src/test_map.cpp
+add_executable(test_pose
+  src/test_pose.cpp
 )
-add_dependencies(test_map ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(test_map
+add_dependencies(test_pose ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(test_pose
+  ${catkin_LIBRARIES}
+)
+
+add_executable(test_voice
+  src/test_voice.cpp
+)
+add_dependencies(test_voice ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(test_voice
+  ${catkin_LIBRARIES}
+)
+
+add_executable(test_dfs
+  src/test_dfs.cpp
+)
+add_dependencies(test_dfs ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(test_dfs
   ${catkin_LIBRARIES}
 )
