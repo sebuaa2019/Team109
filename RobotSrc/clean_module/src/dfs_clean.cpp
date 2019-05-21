@@ -5,7 +5,11 @@
 #include <tf/transform_listener.h>
 #include <std_msgs/String.h>
 #include <rosgraph_msgs/Log.h>
+#include <ctime>
+#include <cstdio>
+#include <cstdlib>
 
+#define db double
 
 int mode; // 0:dfs, 1:zigzag
 int level;
@@ -30,7 +34,13 @@ int zigzag_dir[] = {0, 2, 1, 3};
 int ori_x, ori_y;
 tf::Quaternion q[4]; 
 bool stop, logErr;
+
+// 统计信息
+db S, L; int s_t; // 面积，距离，时间
+
+
 void clean_init(){
+	s_t = clock();
     q[0].setRPY(0, 0, 0);
     q[1].setRPY(0, 0, 0.5*pi);
     q[2].setRPY(0, 0, pi);
@@ -38,9 +48,16 @@ void clean_init(){
     ori_x = 0, ori_y = 0;
 }
 
+void update(){
+	FILE *fp = fopen("clean.out", "w");
+    printf("%lf %lf %d\n", S, L, (int)((clock() - s_t)) );
+	fprintf(fp, "%lf %lf %d\n", S, L, (int)((clock() - s_t)) );
+}
+
 // 导航目标结构体
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 bool move(int x, int y, MoveBaseClient &ac, tf::Quaternion &q, float du = 10.0){
+    update();
     ros::Rate r(1);         //while函数的循环周期,这里为1Hz
     while(ros::ok() && stop)        //程序主循环
     {
@@ -61,7 +78,6 @@ bool move(int x, int y, MoveBaseClient &ac, tf::Quaternion &q, float du = 10.0){
     newWayPoint.target_pose.pose.orientation.w = q.w();
     
     ac.sendGoal(newWayPoint);
-    
 
     int time = 0;
     logErr = 0;
@@ -75,6 +91,7 @@ bool move(int x, int y, MoveBaseClient &ac, tf::Quaternion &q, float du = 10.0){
 
     if (ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
         ROS_INFO("[dfs_clean] move to (%d,%d) succeeded\n", x, y);
+		L += 1 / 5.0;
         return 1;
     }
     else {
@@ -109,6 +126,7 @@ void dfs(int x, int y, MoveBaseClient &ac, int dir){
                     move(_x, _y, ac, q[_dir]);                
                 }
 
+				S += (1 / 5.0) * (1 / 5.0);
 
                 dfs(_x, _y, ac, _dir);
             }
