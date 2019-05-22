@@ -8,15 +8,13 @@ import os
 import time
 
 
-def init(name):
-    os.system('ls')
-    #os.system('roslauch clean_module my_clean.launch')
+def init():
+    os.system('roslauch clean_module my_clean.launch')
 
 
-def robot_clean(name):
-    time.sleep(0.5)
-    os.system('echo hello')
-    #os.system('rosrun clean_module clean')
+def robot_clean(mode, level):
+    #time.sleep(0.5)
+    os.system('rosrun clean_module clean %d %d'%(mode,level))
 
 
 def change_map():
@@ -26,24 +24,20 @@ def change_map():
 
 def clean(request):
     if request.method == 'POST':
-        change_map()
-        p = multiprocessing.Process(target=init, args=('1',))
+        p = multiprocessing.Process(target=init)
         p.start()
-        p = multiprocessing.Process(target=robot_clean, args=('2',))
+
+        mode = 0
+        level = 1
+        if 'zig' in request.POST:
+            mode = 1
+        change_map()
+
+        p = multiprocessing.Process(target=robot_clean, args=(mode,level,))
         p.start()
         p.join()
 
         return render(request, 'clean.html')
     else:
         return render(request, 'clean.html')
-
     
-"""
-        # user auth should be done
-        p = multiprocessing.Process(target=init, args=('1',))
-        p.start()
-        time.sleep(1)
-        p = multiprocessing.Process(target=clean, args=('2',))
-        p.start()
-        p.join()
-"""

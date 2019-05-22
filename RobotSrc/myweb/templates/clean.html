@@ -5,30 +5,44 @@
 <div class="col-md-6">
   <div class="card">
     <div class="card-header">
-      <h4 class="card-title">map</h4>
+      <h4 class="card-title">Map</h4>
     </div>
     <div class="card-body">
-      <img src="{% static 'img/map.jpg' %}" height=350>
+      <img src="{% static 'img/map.jpg' %}" height=300>
+    </div>
+    <div class="card-footer">
+        <div class="legend"><i class="la la-circle text-primary"></i> Map</div>
     </div>
   </div>
 </div>
 <div class="col-md-6">
   <div class="card">
     <div class="card-header">
-      <h4 class="card-title">choose label</h4>
+      <h4 class="card-title">Clean Control</h4>
     </div>
     <div class="card-body">
       <div class="form-page-div">
         <form class="form-page" method="post" action="/clean/">
           {% csrf_token %}
           <p class="demo">
-          <input class="fresh btn btn-lg btn-round" type="submit" value="clean circle">
+          repeat time
+              <input class="input-group-lg form-control" type="text" name="level" placeholder="1">
+          </p>
+          </br>
+          <p class="demo">
+          <input class="fresh btn btn-lg btn-round" type="submit" 
+          name="circle" value="clean circle">
           </p>
           <p class="demo">
-          <input class="fresh btn btn-lg btn-round" type="submit" value="clean zig-zag">
+          <input class="fresh btn btn-lg btn-round" type="submit" 
+          name="zig" value="clean zig-zag">
           </p>
+          {{ res }}
         </form>
       </div>
+    </div>
+    <div class="card-footer">
+        <div class="legend"><i class="la la-circle text-primary"></i> Clean</div>
     </div>
   </div>
 </div>
