@@ -9,12 +9,12 @@ import time
 
 
 def init():
-    os.system('roslauch clean_module my_clean.launch')
+    os.system('roslaunch clean_module my_clean.launch')
 
 
 def robot_clean(mode, level):
     #time.sleep(0.5)
-    os.system('rosrun clean_module clean %d %d'%(mode,level))
+    os.system('rosrun clean_module dfs_clean %d %d'%(mode,level))
 
 
 def change_map():
