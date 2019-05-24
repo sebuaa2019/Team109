@@ -13,12 +13,28 @@
                   <table class="table">
                       <thead>
                           <tr>
+                              <th>
+                                  <div class="form-check">
+                                      <label class="form-check-label">
+                                          <input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
+                                          <span class="form-check-sign"></span>
+                                      </label>
+                                  </div>
+                              </th>
                               <th>Log</th>
                           </tr>
                       </thead>
                       <tbody>
                           {% for log in logs %}
                               <tr>
+                                  <td>
+                                      <div class="form-check">
+                                          <label class="form-check-label">
+                                              <input class="form-check-input task-select" type="checkbox">
+                                              <span class="form-check-sign"></span>
+                                          </label>
+                                      </div>
+                                  </td>
                                   <td>{{ log }}</td>
                               </tr>
                           {% endfor %}
