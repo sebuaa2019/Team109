@@ -50,7 +50,7 @@ def move(request):
     elif type == 'Begin':
         pass
     elif type == 'Stop':
-        write_file('t\n')
+        write_file('t')
     elif type == 'Begin Mapping':
         os.system('roslaunch my_map_package my_gmapping.launch')
     elif type == 'Save Your Map':
