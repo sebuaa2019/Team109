@@ -3,6 +3,8 @@ from django.http import HttpResponse, JsonResponse, HttpResponseNotAllowed
 import json
 import os
 import socket
+import multiprocessing
+import time
 
 # Create your views here.
 
@@ -24,12 +26,20 @@ def write_file(content):
     s.sendall(content.encode())
 
 
+def save_map():
+    os.system('rosrun map_server map_saver -f map')
+
+
 def move_map():
     home_path = os.popen('echo $HOME').readlines()[0].strip()
     rootdir = home_path
-    goaldir = home_path + '/catkin_ws/src/team_109/clean_moudle/config'
-    os.system('mv ' + rootdir + '/map.pgm' + ' ' + goaldir + '/map.pgm')
-    os.system('mv ' + rootdir + '/map.ymal' + ' ' + goaldir + '/map.ymal')
+    ori_dir = rootdir + '/catkin_ws/src/team_109/myweb'
+    goaldir = rootdir + '/catkin_ws/src/team_109/clean_module/config'
+    websrc = rootdir + '/catkin_ws/src/team_109/myweb/static/img'
+    os.system('cp ' + ori_dir + '/map.pgm' + ' ' + websrc + '/map.pgm')
+    os.system('cp ' + ori_dir + '/map.pgm' + ' ' + goaldir + '/map.pgm')
+    os.system('cp ' + ori_dir + '/map.yaml' + ' ' + goaldir + '/map.yaml')
+
 
 
 def move(request):
@@ -45,7 +55,7 @@ def move(request):
         write_file('r')
     elif type == 'Move Left':
         write_file('a')
-    elif type == 'Backward':
+    elif type == 'Backwards':
         write_file('s')
     elif type == 'Move Right':
         write_file('d')
@@ -56,7 +66,6 @@ def move(request):
     elif type == 'Begin Mapping':
         os.system('roslaunch my_map_package my_gmapping.launch')
     elif type == 'Save Your Map':
-        os.system('rosrun map_server map_saver -f map')
+        save_map()
         move_map()
-
     return JsonResponse({"status": "ok"})
