@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4eceaaf-42dc-4b4a-bb60-e571954b4fdb" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/re_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/myweb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/myweb.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/movebase/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/movebase/views.py" afterDir="false" />
+>>>>>>> 41b181954d1c4647bb17adc5b670509f807d272b
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +29,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/movebase.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="378">
               <caret line="21" column="30" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="30" />
             </state>
@@ -35,10 +41,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="576">
               <caret line="32" column="54" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
+=======
+            <state relative-caret-position="23">
+              <caret line="21" column="30" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="30" />
+>>>>>>> 41b181954d1c4647bb17adc5b670509f807d272b
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/fetch/views.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -89,6 +100,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="612">
               <caret line="37" column="64" selection-start-line="37" selection-start-column="64" selection-end-line="37" selection-end-column="64" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/apps/movebase/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-143">
+              <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+>>>>>>> 41b181954d1c4647bb17adc5b670509f807d272b
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -130,7 +148,6 @@
         <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$PROJECT_DIR$/myweb/settings.py" />
-        <option value="$PROJECT_DIR$/apps/movebase/views.py" />
         <option value="$PROJECT_DIR$/static/css/home.css" />
         <option value="$PROJECT_DIR$/apps/logManage/views.py" />
         <option value="$PROJECT_DIR$/apps/fetch/views.py" />
@@ -141,7 +158,11 @@
         <option value="$PROJECT_DIR$/templates/index1.html" />
         <option value="$PROJECT_DIR$/templates/mylog.html" />
         <option value="$PROJECT_DIR$/templates/clean.html" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/re_test.py" />
+=======
+        <option value="$PROJECT_DIR$/apps/movebase/views.py" />
+>>>>>>> 41b181954d1c4647bb17adc5b670509f807d272b
       </list>
     </option>
   </component>
@@ -156,7 +177,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -184,11 +204,16 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="F:/Workspace/Python Project/front_SE" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+>>>>>>> 41b181954d1c4647bb17adc5b670509f807d272b
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -285,18 +310,31 @@
       <workItem from="1558348208480" duration="1306000" />
       <workItem from="1558349706836" duration="1289000" />
       <workItem from="1558380795338" duration="485000" />
+<<<<<<< HEAD
       <workItem from="1558525468601" duration="8744000" />
       <workItem from="1558665278406" duration="478000" />
+=======
+      <workItem from="1558679414934" duration="2560000" />
+>>>>>>> 41b181954d1c4647bb17adc5b670509f807d272b
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="55277000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22117962" />
+=======
+    <option name="totallyTimeSpent" value="48615000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21801706" />
+>>>>>>> 41b181954d1c4647bb17adc5b670509f807d272b
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -420,15 +458,23 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/templates/grab.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="115">
           <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+=======
+    <entry file="file://$PROJECT_DIR$/apps/clean/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+>>>>>>> 41b181954d1c4647bb17adc5b670509f807d272b
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/movebase.html">
+    <entry file="file://$PROJECT_DIR$/templates/grab.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="378">
           <caret line="21" column="30" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="30" />
         </state>
@@ -438,26 +484,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="576">
           <caret line="32" column="54" selection-start-line="32" selection-start-column="54" selection-end-line="32" selection-end-column="54" />
+=======
+        <state relative-caret-position="115">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/fetch/views.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+>>>>>>> 41b181954d1c4647bb17adc5b670509f807d272b
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/fetch/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="18">
           <caret line="2" selection-start-line="2" selection-end-line="2" />
+=======
+        <state relative-caret-position="552">
+          <caret line="24" column="45" selection-start-line="24" selection-start-column="45" selection-end-line="24" selection-end-column="45" />
+>>>>>>> 41b181954d1c4647bb17adc5b670509f807d272b
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/logManage/views.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="162">
           <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+=======
+        <state relative-caret-position="713">
+          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+>>>>>>> 41b181954d1c4647bb17adc5b670509f807d272b
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/apps/movebase/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
@@ -484,6 +552,21 @@
           <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="e#25#60#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/templates/movebase.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="21" column="30" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/movebase/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-143">
+          <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+>>>>>>> 41b181954d1c4647bb17adc5b670509f807d272b
           </folding>
         </state>
       </provider>

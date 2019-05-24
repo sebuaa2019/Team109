@@ -22,7 +22,6 @@
                                   </div>
                               </th>
                               <th>Log</th>
-                              <th>Action</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -37,16 +36,6 @@
                                       </div>
                                   </td>
                                   <td>{{ log }}</td>
-                                  <td class="td-actions text-right">
-                                      <div class="form-button-action">
-                                          <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-                                              <i class="la la-edit"></i>
-                                          </button>
-                                          <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
-                                              <i class="la la-times"></i>
-                                          </button>
-                                      </div>
-                                  </td>
                               </tr>
                           {% endfor %}
                       </tbody>
@@ -54,8 +43,8 @@
               </div>
           </div>
 
-          <p class="demo">
-              <ul class="pagination pg-primary">
+          <p class="demo" >
+              <ul class="pagination pg-primary" style="margin:auto;">
                   <li class="page-item">
                       {% if logs.has_previous %}
                           <a class="page-link" href="?page={{ logs.previous_page_number }}" aria-label="Previous">

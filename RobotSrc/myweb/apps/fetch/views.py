@@ -1,13 +1,14 @@
 from django.shortcuts import render
 import os
+import re
 
 def grab(request):
     res= ''
     if request.method == 'POST':
         sel = request.POST.get('pic')
-        if sel != None:
-            os.system("echo %s"%sel)
-            os.system('rosrun %s.jpg'%sel)
+        if type(sel) is str and  re.match('pic[1-3]',sel) :
+            #os.system('echo %s'%sel)
+            os.system('roslaunch grab_109 grab_obj.launch')
         else:
             res = 'please choose a label'
     pic = [] 
