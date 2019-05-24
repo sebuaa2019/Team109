@@ -26,13 +26,13 @@ def change_map():
 def clean(request):
     if request.method == 'POST':
         level = request.POST.get('level') 
-        if level == None or not re.match('[1-5]', level) :
-           res = "repeat time should be 1, 2, 3, 4 or 5" 
-           os.system("echo %s"%level)
-           return render(request, 'clean.html', {'res':res})
-        else:
-           os.system("echo %s"%level)
+        if type(level) is str and re.match('[1-5]', level) :
+           #os.system("echo %s"%level)
            level = int(level)
+        else:
+           res = "repeat time should be 1, 2, 3, 4 or 5" 
+           #os.system("echo %s"%level)
+           return render(request, 'clean.html', {'res':res})
         
         p = multiprocessing.Process(target=init)
         p.start()
