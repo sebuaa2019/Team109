@@ -6,6 +6,7 @@ from PIL import Image
 import multiprocessing
 import os
 import time
+import re
 
 
 def init():
@@ -24,11 +25,19 @@ def change_map():
 
 def clean(request):
     if request.method == 'POST':
+        level = request.POST.get('level') 
+        if level == None or not re.match('[1-5]', level) :
+           res = "repeat time should be 1, 2, 3, 4 or 5" 
+           os.system("echo %s"%level)
+           return render(request, 'clean.html', {'res':res})
+        else:
+           os.system("echo %s"%level)
+           level = int(level)
+        
         p = multiprocessing.Process(target=init)
         p.start()
 
         mode = 0
-        level = 1
         if 'zig' in request.POST:
             mode = 1
         change_map()
@@ -37,7 +46,7 @@ def clean(request):
         p.start()
         p.join()
 
-        return render(request, 'clean.html')
+        return render(request, 'clean.html', {'res':''})
     else:
-        return render(request, 'clean.html')
+        return render(request, 'clean.html', {'res':''})
     

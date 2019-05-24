@@ -13,40 +13,13 @@
                   <table class="table">
                       <thead>
                           <tr>
-                              <th>
-                                  <div class="form-check">
-                                      <label class="form-check-label">
-                                          <input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
-                                          <span class="form-check-sign"></span>
-                                      </label>
-                                  </div>
-                              </th>
                               <th>Log</th>
-                              <th>Action</th>
                           </tr>
                       </thead>
                       <tbody>
                           {% for log in logs %}
                               <tr>
-                                  <td>
-                                      <div class="form-check">
-                                          <label class="form-check-label">
-                                              <input class="form-check-input task-select" type="checkbox">
-                                              <span class="form-check-sign"></span>
-                                          </label>
-                                      </div>
-                                  </td>
                                   <td>{{ log }}</td>
-                                  <td class="td-actions text-right">
-                                      <div class="form-button-action">
-                                          <button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-                                              <i class="la la-edit"></i>
-                                          </button>
-                                          <button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
-                                              <i class="la la-times"></i>
-                                          </button>
-                                      </div>
-                                  </td>
                               </tr>
                           {% endfor %}
                       </tbody>
@@ -54,8 +27,8 @@
               </div>
           </div>
 
-          <p class="demo">
-              <ul class="pagination pg-primary">
+          <p class="demo" >
+              <ul class="pagination pg-primary" style="margin:auto;">
                   <li class="page-item">
                       {% if logs.has_previous %}
                           <a class="page-link" href="?page={{ logs.previous_page_number }}" aria-label="Previous">
