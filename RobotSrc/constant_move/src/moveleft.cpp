@@ -6,9 +6,7 @@ int main(int argc, char** argv){
     ros::NodeHandle n;
     ros::Publisher vel_pub = n.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
 
-    cnt = 4
-
-    while(cnt--){
+    while(ros::ok){
         geometry_msgs::Twist vel_cmd;
         vel_cmd.linear.x = 0;
         vel_cmd.linear.y = 0.1;
@@ -20,7 +18,5 @@ int main(int argc, char** argv){
 
         ros::spinOnce();
     }
-    
-    ros::shutdown();
     return 0;
 }
