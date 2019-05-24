@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'movebase',
+    'clean',
+    'fetch',
+    'logManage'
+
 ]
 
 MIDDLEWARE = [

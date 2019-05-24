@@ -24,6 +24,7 @@ def change_map():
     im.save('./static/img/map.jpg')
 
 def clean(request):
+    info = [1,1,1]
     if request.method == 'POST':
         level = request.POST.get('level') 
         if type(level) is str and re.match('[1-5]', level) :
@@ -32,7 +33,7 @@ def clean(request):
         else:
            res = "repeat time should be 1, 2, 3, 4 or 5" 
            #os.system("echo %s"%level)
-           return render(request, 'clean.html', {'res':res})
+           return render(request, 'clean.html', {'res':res, 'info':info})
         
         p = multiprocessing.Process(target=init)
         p.start()
@@ -46,7 +47,7 @@ def clean(request):
         p.start()
         p.join()
 
-        return render(request, 'clean.html', {'res':''})
+        return render(request, 'clean.html', {'res':'', 'info':info})
     else:
-        return render(request, 'clean.html', {'res':''})
+        return render(request, 'clean.html', {'res':'', 'info':info})
     
