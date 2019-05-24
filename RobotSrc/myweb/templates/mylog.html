@@ -44,7 +44,7 @@
           </div>
 
           <p class="demo" >
-              <ul class="pagination pg-primary" style="margin:auto;">
+              <ul class="pagination" style="margin:auto;">
                   <li class="page-item">
                       {% if logs.has_previous %}
                           <a class="page-link" href="?page={{ logs.previous_page_number }}" aria-label="Previous">
@@ -54,11 +54,15 @@
                       {% endif %}
                   </li>
                   {% if logs.has_previous %}
-                      <li class="page-item"><a class="page-link" href="#">{{ logs.previous_page_number }}</a></li>
+                      <li class="page-item" ><a class="page-link" href="?page={{ logs.previous_page_number }}">{{ logs.previous_page_number }}</a></li>
                   {% endif %}
-                  <li class="page-item active"><a class="page-link" href="#">{{ logs.number }}</a></li>
+                  <li class="page-item">
+                      <a class="page-link" href="?page={{ logs.number }}" style="color:#fff;background-color:#4abdac;border-color:#4abdac;">
+                          {{ logs.number }}
+                      </a>
+                  </li>
                   {% if logs.has_next %}
-                      <li class="page-item"><a class="page-link" href="#">{{ logs.next_page_number }}</a></li>
+                      <li class="page-item"><a class="page-link" href="?page={{ logs.next_page_number }}">{{ logs.next_page_number }}</a></li>
                   {% endif %}
                   <li class="page-item">
                       {% if logs.has_next %}
