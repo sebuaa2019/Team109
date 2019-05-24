@@ -23,7 +23,7 @@ def index(request):
         timestr = obj.group(1)
         timeStamp = float(timestr)
         timeArray = datetime.datetime.utcfromtimestamp(timeStamp)
-        stdTime = timeArray.strftime("%Y-%m-%d:%H:%M:%S")
+        stdTime = timeArray.strftime("%Y-%m-%d %H:%M:%S")
         # print(stdTime)
         log_list[0].append(stdTime)
         if obj.group(2) is None:
