@@ -187,7 +187,7 @@ int main(int argc, char** argv){
     clean_init();
 
     setVis(ori_x, ori_y);
-    if (move(ori_x, ori_y, ac, q[0], 10.0)){
+    if (move(ori_x, ori_y, ac, q[0], 1000.0)){
         ROS_INFO("[dfs_clean] init the position");
         dfs(ori_x, ori_y, ac, 0);
     }
