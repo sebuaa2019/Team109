@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 2.8.3)
+project(extract)
+
+find_package(OpenCV 3 REQUIRED)
+message("${OpenCV_INCLUDE_DIRS}")
+
+include_directories(${OpenCV_INCLUDE_DIRS})
+
+
+add_executable(extract extract.cpp)
+
+target_link_libraries(extract ${OpenCV_LIBRARIES})
+
