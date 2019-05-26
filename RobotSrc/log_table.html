@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <br>
+    <div style="text-align: left" id="display">
+        <table>
+            <tbody>
+                <tr>
+                    <th width="10%">Time</th>
+                    <th width="5%">Type</th>
+                    <th width="85">Info</th>
+                </tr>
+                {% for log in logs %}
+                    <tr>
+                        <td>{{ log.time }}</td>
+                        <td>{{ log.type }}</td>
+                        <td>{{ log.info }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {# 实现分页标签的代码 #}
+    {# 这里使用 bootstrap 渲染页面 #}
+    <div id="pages" class="text-center" >
+        <nav>
+            <ul class="pagination">
+                <li class="step-links">
+                {% if logs.has_previous %}
+                    <a class='active' href="?page={{ logs.previous_page_number }}">上一页</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ logs.number }} of {{ logs.paginator.num_pages }}</span>
+
+                {% if logs.has_next %}
+                    <a class='active' href="?page={{ logs.next_page_number }}">下一页</a>
+                {% endif %}
+                </li></ul></nav></div>
+</body>
+</html>

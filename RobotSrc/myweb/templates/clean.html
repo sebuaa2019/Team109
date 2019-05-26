@@ -2,34 +2,80 @@
 {% load staticfiles %}
 {% block main %}
 <h4 class="page-title">Clean</h4>
+<div class="row">
 <div class="col-md-6">
-  <div class="card">
-    <div class="card-header">
-      <h4 class="card-title">map</h4>
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Map</h4>
+        </div>
+        <div class="card-body">
+            <img src="{% static 'img/map.jpg' %}" height=300>
+        </div>
+        <div class="card-footer">
+            <div class="legend"><i class="la la-circle text-primary"></i> Map</div>
+        </div>
     </div>
-    <div class="card-body">
-      <img src="{% static 'img/map.jpg' %}" height=350>
+</div>
+<div class="col-md-3">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Clean Information</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Area</th><th>0</th>
+                    </tr>
+                    <tr>
+                        <th>Distance</th><th>0</th>
+                    </tr>
+                    <tr>
+                        <th>Time</th><th>0</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            <div class="legend"><i class="la la-circle text-primary"></i> Information</div>
+        </div>
     </div>
-  </div>
+</div>
 </div>
 <div class="col-md-6">
-  <div class="card">
-    <div class="card-header">
-      <h4 class="card-title">choose label</h4>
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Clean Control</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-page-div">
+                <form class="form-page" method="post" action="/clean/">
+                    {% csrf_token %}
+                    {% if res != '' %}
+                    <div class = "alert vermil">
+                        {{ res }}
+                    </div>
+                    {% endif %}
+                    <p class="demo">
+                    Repeat Time
+                    <input class="input-group-lg form-control" type="text" name="level" value="1">
+                    </p>
+                    </br>
+                    <p class="demo">
+                    <input class="fresh btn btn-lg btn-round" type="submit" 
+                                                              name="circle" value="Clean Circle">
+                    </p>
+                    <p class="demo">
+                    <input class="fresh btn btn-lg btn-round" type="submit" 
+                                                              name="zig" value="Clean Zig-zag">
+                    </p>
+                    {{ res }}
+                </form>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="legend"><i class="la la-circle text-primary"></i> Clean</div>
+        </div>
     </div>
-    <div class="card-body">
-      <div class="form-page-div">
-        <form class="form-page" method="post" action="/clean/">
-          {% csrf_token %}
-          <p class="demo">
-          <input class="fresh btn btn-lg btn-round" type="submit" value="clean circle">
-          </p>
-          <p class="demo">
-          <input class="fresh btn btn-lg btn-round" type="submit" value="clean zig-zag">
-          </p>
-        </form>
-      </div>
-    </div>
-  </div>
 </div>
 {% endblock %}

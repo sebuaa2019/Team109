@@ -4,22 +4,30 @@
 <div class="col-md-6">
   <div class="card">
     <div class="card-header">
-      <h4 class="card-title">map</h4>
+      <h4 class="card-title">Map</h4>
     </div>
     <div class="card-body">
-      <img src="{% static 'img/map.jpg' %}" height=350>
+      <img src="{% static 'img/map.jpg' %}" height=300>
+    </div>
+    <div class="card-footer">
+        <div class="legend"><i class="la la-circle text-primary"></i> Map</div>
     </div>
   </div>
 </div>
 <div class="col-md-6">
   <div class="card">
     <div class="card-header">
-      <h4 class="card-title">choose label</h4>
+      <h4 class="card-title">Choose Label</h4>
     </div>
     <div class="card-body">
       <div class="form-page-div">
         <form class="form-page" method="post" action="/grab/">
           {% csrf_token %}
+          {% if res != '' %}
+          <div class = "alert vermil">
+          {{ res }}
+          </div>
+          {% endif %}
           <p class="demo">
           <ul class="list-group">
               {% for p in pic %}
@@ -34,10 +42,13 @@
           </p>
           <input type="radio" name="pic" id="labelpic" value="pic4"/>
           <p class="demo">
-          <input class="btn-default btn btn-lg btn-round" type="submit" value="fetch object">
+          <input class="fresh btn btn-lg btn-round" type="submit" value="Fetch Object">
           </p>
         </form>
       </div>
+    </div>
+    <div class="card-footer">
+        <div class="legend"><i class="la la-circle text-primary"></i> Grab</div>
     </div>
   </div>
 </div>
