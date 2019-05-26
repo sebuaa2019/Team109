@@ -39,14 +39,11 @@
 //using namespace std;
 using namespace cv;
 
-// 设置默认模板图像
-static std::string default_templ = "/home/robot/catkin_ws/src/team_109/grab_109/src/label_qhd_color.jpg";
-
 // 抓取参数调节（单位：米）
-static float grab_y_offset = -0.1f;          //抓取前，对准物品，机器人的横向位移偏移量
-static float grab_lift_offset = 0.20f;       //手臂抬起高度的补偿偏移量
-static float grab_forward_offset = 0.0f;    //手臂抬起后，机器人向前抓取物品移动的位移偏移量
-static float grab_gripper_value = 0.032;    //抓取物品时，手爪闭合后的手指间距
+static float grab_y_offset = -0.05f;          //抓取前，对准物品，机器人的横向位移偏移量
+static float grab_lift_offset = 0.25f;       //手臂抬起高度的补偿偏移量
+static float grab_forward_offset = 0.05f;    //手臂抬起后，机器人向前抓取物品移动的位移偏移量
+static float grab_gripper_value = 0.040;    //抓取物品时，手爪闭合后的手指间距
 
 #define STEP_WAIT           0
 //改变检测策略，先检测标签，进而检测平面
@@ -166,14 +163,34 @@ ProcImageCB(const sensor_msgs::ImageConstPtr& msg)
 	//cv_ptr->image.convertTo(frame_gray);
 	//cvtColor(cv_ptr->image, frame_gray, CV_BGR2GRAY);
 	
+	if(nFrameNum == 10){
+	//保存图像
+		std::ostringstream stringStream;
+		stringStream << "/home/robot/catkin_ws/src/team_109/grab_109/src/pic/pic_" << nFrameNum;
+		std::string frame_id = stringStream.str();
+		imwrite(frame_id+".jpg", cv_ptr->image);
+	}
+	nFrameNum ++;
+
 	//保存图像
 	//std::ostringstream stringStream;
 	//stringStream << "/home/robot/catkin_ws/src/team_109/grab_109/src/pic/pic_" << nFrameNum++;
 	//std::string frame_id = stringStream.str();
 	//imwrite(frame_id+".jpg", cv_ptr->image);
 	//ROS_INFO("(w, h)=(%d, %d)", frame_gray.cols, frame_gray.rows);
+/*	
+cv::Mat src, dst, yuv;
 
+	std::vector<cv::Mat> channels;
+	
+	cv::cvtColor(cv_ptr->image, yuv, COLOR_BGR2YUV);
+	
+	cv::split(yuv, channels);
+	cv::equalizeHist(channels[0], channels[0]); // 均衡化
+	cv::merge(channels, dst); // 合并
+*/
 	matchTemplate(cv_ptr->image, templ, objects, match_method);
+
 	normalize(objects, objects, 0, 1, NORM_MINMAX, -1, Mat() );
 	double minVal, maxVal, val;
 	Point minLoc, maxLoc, matchLoc;
@@ -216,11 +233,7 @@ ProcImageCB(const sensor_msgs::ImageConstPtr& msg)
 	
 	rgb_pub.publish(cv_ptr->toImageMsg());
 	
-	//保存图像
-	//std::ostringstream stringStream;
-	//stringStream << "/home/robot/catkin_ws/src/team_109/grab_109/src/pic/pic_" << nFrameNum++;
-	//std::string frame_id = stringStream.str();
-	//imwrite(frame_id+".jpg", cv_ptr->image);
+	
 }
 
 
@@ -241,7 +254,7 @@ ProcCloudCB(const sensor_msgs::PointCloud2 &input)
     //pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_source_ptr;
 	////////////////////////////////////
 	
-ROS_INFO("(input.width, input.height)=(%d,%d)",input.width, input.height);
+//ROS_INFO("(input.width, input.height)=(%d,%d)",input.width, input.height);
 	//ROS_INFO("[callbackPointCloud] (x1,y1,x2,y2)=(%d,%d,%d,%d)", tl.x,tl.y,br.x,br.y);
 
 	//数据处理
@@ -266,9 +279,12 @@ ROS_INFO("(input.width, input.height)=(%d,%d)",input.width, input.height);
 			
 			ROS_INFO("[callbackPointCloud] planeHeight=%.2f", fPlaneHeight);
 			
+			int xhalf = (int)((br.x - tl.x)/4);
+			int yhalf = (int)((br.y - tl.y)/4);
+			
 			bool firstP = true;
-			for(int y = tl.y; y<br.y; y++){
-				for(int x=tl.x; x<br.x; x++){
+			for(int y = tl.y + yhalf; y<br.y - yhalf; y++){
+				for(int x=tl.x + xhalf; x<br.x - xhalf; x++){
 					int index_pc = y * input.width + x;
 			// 确定标签的空间位置
 					pcl::PointXYZRGB p = cloud_src.points[index_pc];
@@ -322,14 +338,15 @@ boxMarker.xMin, boxMarker.xMax, boxMarker.yMin, boxMarker.yMax, boxMarker.zMin, 
 		VelCmd(0, 0, 0);
 		ctrl_msg.data = "pose_diff reset";
 		ctrl_pub.publish(ctrl_msg);
-		if(fabs(fPlaneHeight - fLastPlaneHeight) < 0.05){
+		//if(fabs(fPlaneHeight - fLastPlaneHeight) < 0.05){
+		if(fPlaneHeight >= 0.5  && fPlaneHeight<=0.7){		
 			nPlaneHeightCounter ++;
 		}else{
 			nPlaneHeightCounter = 0;
 		}
 		ROS_WARN("[FIND_PLANE] z= %.2f  counter= %d" ,fPlaneHeight, nPlaneHeightCounter);
         
-		if(nPlaneHeightCounter > 10)
+		if(nPlaneHeightCounter > 5)
         {
             nPlaneHeightCounter = 0;
             nTimeDelayCounter = 0;
@@ -368,11 +385,11 @@ boxMarker.xMin, boxMarker.xMax, boxMarker.yMin, boxMarker.yMax, boxMarker.zMin, 
 			if(diff>0) 
 {
 //ROS_INFO("距离太远");
-VelCmd(0.1, 0, 0); //距离还太远，前进
+VelCmd(0.05, 0, 0); //距离还太远，前进
 }			
 else{
 //ROS_INFO("距离太近");
- VelCmd(-0.1, 0, 0); //距离太近，后退
+ VelCmd(-0.05, 0, 0); //距离太近，后退
 		
 }
 }
@@ -408,8 +425,8 @@ else{
 	//5、抬起手臂
 	if(nStep == STEP_HAND_UP){
 		if(nTimeDelayCounter == 0){
-			//mani_ctrl_msg.position[0] = fPlaneHeight + grab_lift_offset;
-			mani_ctrl_msg.position[0] = (boxLastObject.zMin + boxLastObject.zMax)/2 + grab_lift_offset;
+			mani_ctrl_msg.position[0] = fPlaneHeight + grab_lift_offset;
+		//mani_ctrl_msg.position[0] = (boxLastObject.zMax + boxLastObject.zMax)/2 + grab_lift_offset;
             mani_ctrl_msg.position[1] = 0.16;
             mani_ctrl_pub.publish(mani_ctrl_msg);
             ROS_WARN("[MANI_CTRL] lift= %.2f  gripper= %.2f " ,mani_ctrl_msg.position[0], mani_ctrl_msg.position[1]);
@@ -418,7 +435,7 @@ else{
         }
 		nTimeDelayCounter ++;
 		VelCmd(0,0,0);
-		if(nTimeDelayCounter > 25){
+		if(nTimeDelayCounter > 27){
 			fMoveTargetX = fObjGrabX - 0.55 + grab_forward_offset;
 			fMoveTargetY = 0;
 			ROS_WARN("[STEP_FORWARD] x = %.2f y=%.2f", fMoveTargetX, fMoveTargetY);
@@ -457,7 +474,7 @@ else{
 		nTimeDelayCounter ++;
 		VelCmd(0,0,0);
 		
-		if(nTimeDelayCounter > 20)
+		if(nTimeDelayCounter > 10)
         {
             fMoveTargetX = -(fTargetGrabX-0.4);
             fMoveTargetY = 0;
@@ -470,8 +487,22 @@ else{
 	//10、抓取任务完毕
     if(nStep == STEP_DONE)
     {
-        result_msg.data = "done";
-        result_pub.publish(result_msg);
+	if(nTimeDelayCounter==0){
+        	result_msg.data = "done";
+        	result_pub.publish(result_msg);
+	}
+	
+	nTimeDelayCounter ++;
+	if(nTimeDelayCounter > 5){
+		nTimeDelayCounter = 0;
+		
+		mani_ctrl_msg.position[0] = 0.0;
+		mani_ctrl_msg.position[1] = 1;      //抓取物品手爪闭合宽度
+        mani_ctrl_pub.publish(mani_ctrl_msg);
+		
+		//nStep = STEP_FIND_PLANE;
+	}
+
     }
 }
 
@@ -633,7 +664,7 @@ move(std::string rlt_msg, std::string ctl_msg)
 	
 	//ROS_INFO("[main] nStep = %d", nStep);
 
-	if(fabs(vx) <= 0.02 && fabs(vy) <= 0.02)
+	if(fabs(vx) <= 0.0 && fabs(vy) <= 0.0)
 	{
 		VelCmd(0,0,0);
 		ctrl_msg.data = ctl_msg;
@@ -660,7 +691,7 @@ move(std::string rlt_msg, std::string ctl_msg)
 int 
 main(int argc, char** argv)
 {
-	ros::init(argc, argv, "grab_obj");
+	ros::init(argc, argv, "modified_grab_obj");
 	ROS_INFO("my_grab_object");
 	tf_listener = new tf::TransformListener();
 	
@@ -668,11 +699,7 @@ main(int argc, char** argv)
 	nh_param.param<std::string>("rgb_topic", rgb_topic, "/kinect2/qhd/image_color");
 	nh_param.param<std::string>("topic", pc_topic, "/kinect2/qhd/points");
 	
-	std::string templpath;
-	// 可以通过命令行设置模板图像 rosrun grab_109 grab_obj _templ_img:= filepath
-	nh_param.param<std::string>("templ_img", templpath, default_templ);
-	
-	//std::string templpath = "/home/robot/catkin_ws/src/team_109/grab_109/src/label_qhd_color.jpg";
+	std::string templpath = "/home/robot/catkin_ws/src/team_109/grab_109/src/label_qhd_color.jpg";
 	templ = imread(templpath);
 	if(templ.data == NULL){
 		//ROS_INFO("(w, h)=(%d, %d)", templ.cols, templ.rows);
@@ -715,8 +742,9 @@ main(int argc, char** argv)
 	nh_param.getParam("grab/grab_y_offset", grab_y_offset);
     nh_param.getParam("grab/grab_lift_offset", grab_lift_offset);
     nh_param.getParam("grab/grab_forward_offset", grab_forward_offset);
-    nh_param.getParam("grab/grab_gripper_value", grab_gripper_value);
 */
+    //nh_param.getParam("grab/grab_gripper_value", grab_gripper_value);
+
 
     bool bActive = true;
     nh_param.param<bool>("start", bActive, true);
