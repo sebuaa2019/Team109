@@ -491,10 +491,16 @@ else{
         	result_msg.data = "done";
         	result_pub.publish(result_msg);
 	}
+	
 	nTimeDelayCounter ++;
-	if(nTimeDelayCounter > 10){
+	if(nTimeDelayCounter > 5){
 		nTimeDelayCounter = 0;
-		nStep = STEP_FIND_PLANE;
+		
+		mani_ctrl_msg.position[0] = 0.0;
+		mani_ctrl_msg.position[1] = 1;      //抓取物品手爪闭合宽度
+        mani_ctrl_pub.publish(mani_ctrl_msg);
+		
+		//nStep = STEP_FIND_PLANE;
 	}
 
     }
