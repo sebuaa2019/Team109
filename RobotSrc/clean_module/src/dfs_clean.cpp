@@ -49,9 +49,12 @@ void clean_init(){
 }
 
 void update(){
+    /*
 	FILE *fp = fopen("clean.out", "w");
     printf("%lf %lf %d\n", S, L, (int)((clock() - s_t)) );
 	fprintf(fp, "%lf %lf %d\n", S, L, (int)((clock() - s_t)) );
+	*/
+	ROS_INFO("cleaninfo %d %d %d\n", int(S), int(L), (int)((clock() - s_t)));
 }
 
 // 导航目标结构体

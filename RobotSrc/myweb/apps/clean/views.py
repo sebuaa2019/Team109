@@ -7,6 +7,9 @@ import multiprocessing
 import os
 import time
 import re
+from logManage.models import logs
+from logManage.views import update_log 
+
 
 
 def init():
@@ -23,8 +26,19 @@ def change_map():
     im = im.crop((400, 400, 600, 600))
     im.save('./static/img/map.jpg')
 
+
 def clean(request):
-    info = [1,1,1]
+    info = [0,0,0]
+    info_str = logs.objects.order_by("-time").filter(info__contains='cleaninfo')[0].info
+    pat = re.match('.*cleaninfo ([0-9]+) ([0-9]+) ([0-9]+)',info_str)
+    if pat:
+        info[0] = pat.group(1)
+        info[1] = pat.group(2)
+        info[2] = pat.group(3)
+    print(info)
+    change_map()
+    update_log()
+
     if request.method == 'POST':
         level = request.POST.get('level') 
         if type(level) is str and re.match('[1-5]', level) :
@@ -41,7 +55,6 @@ def clean(request):
         mode = 0
         if 'zig' in request.POST:
             mode = 1
-        change_map()
 
         p = multiprocessing.Process(target=robot_clean, args=(mode,level,))
         p.start()

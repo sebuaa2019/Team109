@@ -8,40 +8,48 @@ from logManage.models import logs
 
 # Create your views here.
 
-
-def index(request):
-    file = open("D:/web/Apache24/htdocs/Team109/RobotSrc/rosout.log")
+def update_log():
+    try:
+        file = open("/home/robot/.ros/log/latest/rosout.log")
+    except:
+        file = open("D:/web/Apache24/htdocs/Team109/RobotSrc/rosout.log")
     li = []
-    log_list = [[] for i in range(3)]
+    log_list = []
     for line in file.readlines():
         li.append(line)
 
     pattern = r'(\d+\.\d+) ([A-Z]+)? (.*)'
 
+    i = -1
     for x in li:
         obj = re.match(pattern, x)
-        # print(obj.group(1))
-        timestr = obj.group(1)
-        timeStamp = float(timestr)
-        timeArray = datetime.datetime.utcfromtimestamp(timeStamp)
-        stdTime = timeArray.strftime("%Y-%m-%d %H:%M:%S")
-        # print(stdTime)
-        log_list[0].append(stdTime)
-        if obj.group(2) is None:
-            log_list[1].append("BASE")
-        else:
-            log_list[1].append(obj.group(2))
-        log_list[2].append(obj.group(3))
+        if obj :
+            timestr = obj.group(1)
+            timeStamp = float(timestr)
+            timeArray = datetime.datetime.utcfromtimestamp(timeStamp)
+            stdTime = timeArray.strftime("%Y-%m-%d %H:%M:%S")
 
-        Time = stdTime
-        if obj.group(2) is None:
+            Time = stdTime
             Type = "BASE"
-        else :
-            Type = obj.group(2)
-        Info = obj.group(3)
-        logs.objects.get_or_create(time=Time,type=Type,info=Info)
+            if not obj.group(2) is None:
+                Type = obj.group(2)
+            Info = obj.group(3)
+            log_list.append([Time, Type, Info])
+            i = i + 1
+        elif i >= 0 :
+            log_list[i][2] += x
 
-    log_list = logs.objects.all().order_by("time")
+    for x in log_list:
+        Time = x[0]
+        Type = x[1]
+        Info = x[2]
+        logs.objects.get_or_create(time=Time,type=Type,info=Info)
+    
+
+def index(request):
+    update_log()
+
+    log_list = logs.objects.all().order_by("-time")
     paginator = Paginator(log_list, 10)
 
     if request.method == "GET":
