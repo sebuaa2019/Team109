@@ -1,89 +1,91 @@
 {% extends "index.html" %}
 {% load staticfiles %}
 {% block main %}
-    <div class="row">
-        <div class="col-md-9">
-            <div class="card card-tasks">
-                <div class="card-header ">
-                    <h4 class="card-title">Logs</h4>
-                    <p class="card-category">Robot System Log</p>
-                </div>
-                <div class="card-body ">
-                    <div class="table-full-width">
-                        <table class="table">
-                            <thead>
+<div class="row">
+    <div class="col-md-9">
+        <div class="card card-tasks">
+            <div class="card-header ">
+                <h4 class="card-title">Logs</h4>
+                <p class="card-category">Robot System Log</p>
+            </div>
+            <div class="card-body ">
+                <div class="table-full-width">
+                    <table class="table">
+                        <thead>
                             <tr>
                                 <th>
                                     <div class="form-check">
                                         <label class="form-check-label">
                                             <input class="form-check-input  select-all-checkbox" type="checkbox"
-                                                   data-select="checkbox" data-target=".task-select">
+                                                                                                 data-select="checkbox" data-target=".task-select">
                                             <span class="form-check-sign"></span>
                                         </label>
                                     </div>
                                 </th>
-                                <th>Log</th>
+                                <th width="15%">Time</th>
+                                <th width="10%">Type</th>
+                                <th width="75%">Info</th>
                             </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th width="10%">Time</th>
-                                <th width="5%">Type</th>
-                                <th width="85%">Info</th>
-                            </tr>
+                        </thead>
+                        <tbody>
                             {% for log in logs %}
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input class="form-check-input task-select" type="checkbox">
-                                                <span class="form-check-sign"></span>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>{{ log.time }}</td>
-                                    <td>{{ log.type }}</td>
-                                    <td>{{ log.info }}</td>
-                                </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input task-select" type="checkbox">
+                                            <span class="form-check-sign"></span>
+                                        </label>
+                                    </div>
+                                </td>
+                                <td>{{ log.time }}</td>
+                                <td>{{ log.type }}</td>
+                                <td>{{ log.info }}</td>
+                            </tr>
                             {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
 
-                <p class="demo">
-                <ul class="pagination pg-primary" style="margin:auto;">
-                    <li class="page-item">
-                        {% if logs.has_previous %}
-                            <a class="page-link" href="?page={{ logs.previous_page_number }}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                        {% endif %}
-                    </li>
-                    {% if logs.has_previous %}
-                        <li class="page-item"><a class="page-link" href="#">{{ logs.previous_page_number }}</a></li>
-                    {% endif %}
-                    <li class="page-item active"><a class="page-link" href="#">{{ logs.number }}</a></li>
-                    {% if logs.has_next %}
-                        <li class="page-item"><a class="page-link" href="#">{{ logs.next_page_number }}</a></li>
-                    {% endif %}
+            <p class="demo">
+            <ul class="pagination pg-primary" style="margin:auto;">
+                <li class="page-item">
+                      {% if logs.has_previous %}
+                          <a class="page-link" href="?page=1" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                              <span class="sr-only">Previous</span>
+                          </a>
+                      {% endif %}
+                  </li>
+                {% if logs.has_previous %}
+                <li class="page-item" ><a class="page-link" href="?page={{ logs.previous_page_number }}">{{ logs.previous_page_number }}</a></li>
+                {% endif %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ logs.number }}" style="color:#fff;background-color:#4abdac;border-color:#4abdac;">
+                        {{ logs.number }}
+                    </a>
+                </li>
+                {% if logs.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ logs.next_page_number }}">{{ logs.next_page_number }}</a></li>
+                {% endif %}
+                <li class="page-item">
                     <li class="page-item">
                         {% if logs.has_next %}
-                            <a class="page-link" href="?page={{ logs.next_page_number }}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                <span class="sr-only">Next</span>
-                            </a>
+                        <a class="page-link" href="?page={{ logs.paginator.num_pages }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
                         {% endif %}
                     </li>
-                </ul>
-                </p>
-                <div class="card-footer ">
-                    <div class="stats">
-                        <i class="now-ui-icons loader_refresh spin"></i> Updated from ROS
-                    </div>
+            </ul>
+            </p>
+            <div class="card-footer ">
+                <div class="stats">
+                    <i class="now-ui-icons loader_refresh spin"></i> Updated from ROS
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
