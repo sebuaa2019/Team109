@@ -29,7 +29,7 @@ def grab(request):
         if 'shop' in request.POST:
             os.system('roslaunch wpb_home_apps shopping.launch')
             return render(request, 'grab.html', {'pic':pic, 'res':res})
-            sel = request.POST.get('pic')
+        sel = request.POST.get('pic')
         if type(sel) is str and  re.match('pic[1-3]',sel) :
             init()
         else:
