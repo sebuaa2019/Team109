@@ -25,13 +25,13 @@
             <table class="table table-striped">
                 <tbody>
                     <tr>
-                        <th>Area</th><th>{{info.0}}</th>
+                        <th>Area</th><th id="clean-info0">{{info.0}}</th>
                     </tr>
                     <tr>
-                        <th>Distance</th><th>{{info.1}}</th>
+                        <th>Distance</th><th id="clean-info1">{{info.1}}</th>
                     </tr>
                     <tr>
-                        <th>Time</th><th>{{info.2}}</th>
+                        <th>Time</th><th id="clean-info2">{{info.2}}</th>
                     </tr>
                 </tbody>
             </table>
@@ -78,4 +78,28 @@
         </div>
     </div>
 </div>
+<script language="JavaScript"> 
+function myrefresh() 
+{ 
+    /*
+    $.ajax({
+        method: "POST",
+        url: "{% url 'clean_info' %}",
+        dataType: 'json',
+        data: {
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+        success: function(data) {
+            alert(data['info1']);
+            $('#clean-info0').html(1);
+            $('#clean-info1').html(data['info1']);
+            $('#clean-info2').html(data['info2']);
+            return;
+        }
+    });
+    */
+    window.location.reload(); 
+} 
+setTimeout('myrefresh()',4000); //指定固定时间刷新一次 
+</script>
 {% endblock %}

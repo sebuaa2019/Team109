@@ -21,7 +21,7 @@ from django.views.generic import TemplateView
 import movebase.views as api
 from logManage.views import index
 from fetch.views import grab
-from clean.views import clean
+from clean.views import clean, clean_info
 from users.views import user_login, user_logout, user_register
 
 
@@ -34,6 +34,7 @@ urlpatterns = [
     path('Log/',index),
     path('grab/',grab),
     path('clean/',clean),
+    path('clean_info/',clean_info, name='clean_info'),
     path('login/',user_login, name='login'),
     path('logout/', user_logout, name="logout"),
     path('register/',user_register, name='register'),
