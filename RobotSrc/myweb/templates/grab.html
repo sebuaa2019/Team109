@@ -7,7 +7,7 @@
       <h4 class="card-title">Map</h4>
     </div>
     <div class="card-body">
-      <img src="{% static 'img/map.jpg' %}" height=300>
+        <img src="{% static 'img/map.jpg' %}"><!-- height=300>-->
     </div>
     <div class="card-footer">
         <div class="legend"><i class="la la-circle text-primary"></i> Map</div>
@@ -42,7 +42,10 @@
           </p>
           <input type="radio" name="pic" id="labelpic" value="pic4"/>
           <p class="demo">
-          <input class="fresh btn btn-lg btn-round" type="submit" value="Fetch Object">
+          <input class="fresh btn btn-lg btn-round" type="submit" name="fetch" value="Fetch Object">
+          </p>
+          <p class="demo">
+          <input class="sunshine btn btn-lg btn-round" type="submit" name="shop" value="Go Shopping">
           </p>
         </form>
       </div>

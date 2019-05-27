@@ -39,11 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'movebase',
-    'clean',
+    'users',
     'fetch',
-    'logManage'
-
+    'clean',
+    'logManage',
 ]
+
+AUTH_USER_MODEL = "users.UserInfo"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

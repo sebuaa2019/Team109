@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% load staticfiles %}
+{% block main %}
+    <div class="row">
+        <div class="col-lg-4 col-md-5">
+            <div class="card card-user">
+                <div class="image">
+                    <img src="assets/img/background.jpg" alt="..."/>
+                </div>
+                <div class="content">
+                    <div class="author">
+                      <img class="avatar border-white" src="assets/img/faces/face-2.jpg" alt="..."/>
+                      <h4 class="title">Chet Faker<br />
+                         <a href="#"><small>@chetfaker</small></a>
+                      </h4>
+                    </div>
+                    <p class="description text-center">
+                        "I like the way you work it <br>
+                        No diggity <br>
+                        I wanna bag it up"
+                    </p>
+                </div>
+                <hr>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

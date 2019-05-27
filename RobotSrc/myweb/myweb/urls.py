@@ -15,23 +15,28 @@ Including another URLconf
 """
 import os
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from django.conf.urls import url 
 from django.views.generic import TemplateView
 import movebase.views as api
 from logManage.views import index
 from fetch.views import grab
-from clean.views import clean
+from clean.views import clean, clean_info
+from users.views import user_login, user_logout, user_register
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='introduction.html'), name='index'),
     path('home/',TemplateView.as_view(template_name='introduction.html'),name = 'home'),
-    path('movebase/', TemplateView.as_view(template_name='movebase.html'), name = 'home'),
+    path('movebase/', TemplateView.as_view(template_name='movebase.html'), name = 'movebase'),
     path('api/move', api.move, name="api_move"),
     path('Log/',index),
     path('grab/',grab),
     path('clean/',clean),
-
+    path('clean_info/',clean_info, name='clean_info'),
+    path('login/',user_login, name='login'),
+    path('logout/', user_logout, name="logout"),
+    path('register/',user_register, name='register'),
+    path('profile/',TemplateView.as_view(template_name='profile.html'), name='profile'),
 ]
