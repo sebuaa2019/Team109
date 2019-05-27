@@ -8,7 +8,7 @@ class UserRegisterForm(forms.Form):
     password = forms.CharField(required=True, min_length=6)
 
 
-# class ModifyUserInfoForm(forms.ModelForm):
-#     class Meta:
-#         model = UserInfo
-#         fields = ['nickname', 'Email', 'passward', 'Age', 'telephone','address']
+class ModifyUserInfoForm(forms.ModelForm):
+    class Meta:
+        model = UserInfo
+        fields = ['nick_name', 'email', 'Age', 'mobileNumber','address', 'aboutme']
