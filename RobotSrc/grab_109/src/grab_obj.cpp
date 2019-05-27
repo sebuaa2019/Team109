@@ -45,6 +45,10 @@ static float grab_lift_offset = 0.25f;       //手臂抬起高度的补偿偏移
 static float grab_forward_offset = 0.05f;    //手臂抬起后，机器人向前抓取物品移动的位移偏移量
 static float grab_gripper_value = 0.040;    //抓取物品时，手爪闭合后的手指间距
 
+
+// 默认标签
+static std::string default_label = "/home/robot/catkin_ws/src/team_109/grab_109/src/label/pic_10.jpg";//label_qhd_color.jpg";
+
 #define STEP_WAIT           0
 //改变检测策略，先检测标签，进而检测平面
 #define STEP_FIND_OBJ       1
@@ -178,17 +182,28 @@ ProcImageCB(const sensor_msgs::ImageConstPtr& msg)
 	//std::string frame_id = stringStream.str();
 	//imwrite(frame_id+".jpg", cv_ptr->image);
 	//ROS_INFO("(w, h)=(%d, %d)", frame_gray.cols, frame_gray.rows);
-/*	
-cv::Mat src, dst, yuv;
+	
+	/*
+	// 脂肪图均衡化
+	cv::Mat src, dst, yuv;
+	cv::Mat tsrc, tdst, tyuv;
 
-	std::vector<cv::Mat> channels;
+	std::vector<cv::Mat> channels, tchannels;
 	
 	cv::cvtColor(cv_ptr->image, yuv, COLOR_BGR2YUV);
+	cv::cvtColor(templ, tyuv, COLOR_BGR2YUV);
 	
 	cv::split(yuv, channels);
+	
 	cv::equalizeHist(channels[0], channels[0]); // 均衡化
 	cv::merge(channels, dst); // 合并
-*/
+
+	cv::split(tyuv, tchannels);
+	cv::equalizeHist(tchannels[0], tchannels[0]);
+	cv::merge(tchannels, tdst);
+
+	*/
+
 	matchTemplate(cv_ptr->image, templ, objects, match_method);
 
 	normalize(objects, objects, 0, 1, NORM_MINMAX, -1, Mat() );
@@ -435,7 +450,7 @@ else{
         }
 		nTimeDelayCounter ++;
 		VelCmd(0,0,0);
-		if(nTimeDelayCounter > 27){
+		if(nTimeDelayCounter > 30){
 			fMoveTargetX = fObjGrabX - 0.55 + grab_forward_offset;
 			fMoveTargetY = 0;
 			ROS_WARN("[STEP_FORWARD] x = %.2f y=%.2f", fMoveTargetX, fMoveTargetY);
@@ -491,16 +506,19 @@ else{
         	result_msg.data = "done";
         	result_pub.publish(result_msg);
 	}
-	
+
+	mani_ctrl_msg.position[1] = 1.0;
+	mani_ctrl_pub.publish(mani_ctrl_msg);
+
 	nTimeDelayCounter ++;
-	if(nTimeDelayCounter > 5){
+	if(nTimeDelayCounter > 10){
 		nTimeDelayCounter = 0;
+		//nStep = STEP_FIND_PLANE;
 		
 		mani_ctrl_msg.position[0] = 0.0;
-		mani_ctrl_msg.position[1] = 1;      //抓取物品手爪闭合宽度
-        mani_ctrl_pub.publish(mani_ctrl_msg);
+		mani_ctrl_pub.publish(mani_ctrl_msg);
+
 		
-		//nStep = STEP_FIND_PLANE;
 	}
 
     }
@@ -659,12 +677,20 @@ move(std::string rlt_msg, std::string ctl_msg)
 	vx = (fMoveTargetX - pose_diff.x)/2;
 	vy = (fMoveTargetY - pose_diff.y)/2;
 
+	if(vx >= 0.08) vx = 0.08;
+	if(vx <= -0.08) vx = -0.08;
+	if(vy >= 0.08) vy = 0.08;
+	if(vx <= -0.08) vy = -0.08;
+
+	//vx = min(vx, 0.08);
+	//vy = min(vy, 0.08);
+
 	VelCmd(vx,vy,0);
 	ROS_INFO("[MOVE] T(%.2f %.2f)  od(%.2f , %.2f) v(%.2f,%.2f)" ,fMoveTargetX, fMoveTargetY, pose_diff.x ,pose_diff.y,vx,vy);
 	
 	//ROS_INFO("[main] nStep = %d", nStep);
 
-	if(fabs(vx) <= 0.0 && fabs(vy) <= 0.0)
+	if(fabs(vx) <= 0.01 && fabs(vy) <= 0.01)
 	{
 		VelCmd(0,0,0);
 		ctrl_msg.data = ctl_msg;
@@ -691,15 +717,25 @@ move(std::string rlt_msg, std::string ctl_msg)
 int 
 main(int argc, char** argv)
 {
-	ros::init(argc, argv, "modified_grab_obj");
+	ros::init(argc, argv, "grab_obj");
 	ROS_INFO("my_grab_object");
 	tf_listener = new tf::TransformListener();
 	
 	ros::NodeHandle nh_param("~");
-	nh_param.param<std::string>("rgb_topic", rgb_topic, "/kinect2/qhd/image_color");
-	nh_param.param<std::string>("topic", pc_topic, "/kinect2/qhd/points");
+	//nh_param.param<std::string>("rgb_topic", rgb_topic, "/kinect2/qhd/image_color");
+	//nh_param.param<std::string>("topic", pc_topic, "/kinect2/qhd/points");
 	
-	std::string templpath = "/home/robot/catkin_ws/src/team_109/grab_109/src/label_qhd_color.jpg";
+	rgb_topic = "/kinect2/qhd/image_color";
+	pc_topic = "/kinect2/qhd/points";
+
+	std::string templpath = default_label;
+	
+	if(argc == 2)
+		templpath = argv[1];
+
+	//nh_param.param<std::string>("label_109", templpath, default_label);
+
+	//std::string templpath = "/home/robot/catkin_ws/src/team_109/grab_109/src/label/pic_10.jpg";//label_qhd_color.jpg";
 	templ = imread(templpath);
 	if(templ.data == NULL){
 		//ROS_INFO("(w, h)=(%d, %d)", templ.cols, templ.rows);
