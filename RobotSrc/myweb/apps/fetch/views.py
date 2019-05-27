@@ -8,9 +8,9 @@ path_dic = {
         'pic3':'default.jpg'
         }
 
-def init():
+def init(sel):
     path = '/home/robot/catkin_ws/src/team_109/grab_109/src/label/'+path_dic[sel]
-    os.system('roslaunch grab_109 grab_obj.launch templpath:=%s'%(path_dic[sel]))
+    os.system('roslaunch grab_109 grab_obj.launch templpath:=%s'%path)
 
 
 def grab(request):
@@ -20,18 +20,13 @@ def grab(request):
     res= ''
 
 
-    if request.method == 'POST':
-        try:
-            os.system('rosnode kill rviz')
-        except:
-            print('kill rviz failed')
-
+    if request.method == 'POST'
         if 'shop' in request.POST:
             os.system('roslaunch wpb_home_apps shopping.launch')
             return render(request, 'grab.html', {'pic':pic, 'res':res})
         sel = request.POST.get('pic')
         if type(sel) is str and  re.match('pic[1-3]',sel) :
-            init()
+            init(sel)
         else:
             res = 'please choose a label'
     return render(request, 'grab.html', {'pic':pic, 'res':res})
