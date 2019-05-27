@@ -19,8 +19,7 @@ def grab(request):
         pic.append( [i, 'img/pic%d.jpg'%i] )
     res= ''
 
-
-    if request.method == 'POST'
+    if request.method == 'POST':
         if 'shop' in request.POST:
             os.system('roslaunch wpb_home_apps shopping.launch')
             return render(request, 'grab.html', {'pic':pic, 'res':res})

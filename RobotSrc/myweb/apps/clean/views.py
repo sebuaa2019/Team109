@@ -14,10 +14,6 @@ from logManage.views import update_log
 
 
 def init(mode, level):
-    try:
-        os.system('rosnode kill rviz')
-    except:
-        print('kill rviz failed')
     os.system('roslaunch clean_module my_clean.launch mode:=%d level:=%d'%(mode,level))
 
 
@@ -44,6 +40,7 @@ def clean_info(request):
 
 
 def clean(request):
+    return
     update_log()
     info = [0,0,0]
     try:
