@@ -13,17 +13,12 @@ from logManage.views import update_log
 
 
 
-def init():
+def init(mode, level):
     try:
         os.system('rosnode kill rviz')
     except:
         print('kill rviz failed')
-    os.system('roslaunch clean_module my_clean.launch')
-
-
-def robot_clean(mode, level):
-    #time.sleep(0.5)
-    os.system('rosrun clean_module dfs_clean %d %d'%(mode,level))
+    os.system('roslaunch clean_module my_clean.launch mode:=%d level:=%d'%(mode,level))
 
 
 def change_map():
@@ -49,7 +44,6 @@ def clean_info(request):
 
 
 def clean(request):
-    change_map()
     update_log()
     info = [0,0,0]
     try:
@@ -63,27 +57,31 @@ def clean(request):
         pass
 
     if request.method == 'POST':
+        change_map()
         level = request.POST.get('level') 
         if type(level) is str and re.match('[1-5]', level) :
            #os.system("echo %s"%level)
-           level = int(level)
+           level = int(level)-1
         else:
            res = "repeat time should be 1, 2, 3, 4 or 5" 
            #os.system("echo %s"%level)
            return render(request, 'clean.html', {'res':res, 'info':info})
         
-        p = multiprocessing.Process(target=init)
-        p.start()
 
         mode = 0
         if 'zig' in request.POST:
             mode = 1
+        init(mode, level)
 
-        p = multiprocessing.Process(target=robot_clean, args=(mode,level,))
-        p.start()
-        p.join()
 
         return render(request, 'clean.html', {'res':'', 'info':info})
     else:
         return render(request, 'clean.html', {'res':'', 'info':info})
     
+"""
+        p = multiprocessing.Process(target=init)
+        p.start()
+        p = multiprocessing.Process(target=robot_clean, args=(mode,level,))
+        p.start()
+        p.join()
+"""

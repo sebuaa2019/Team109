@@ -79,9 +79,9 @@
     </div>
 </div>
 <script language="JavaScript"> 
+    /*
 function myrefresh() 
 { 
-    /*
     $.ajax({
         method: "POST",
         url: "{% url 'clean_info' %}",
@@ -97,9 +97,9 @@ function myrefresh()
             return;
         }
     });
-    */
     window.location.reload(); 
 } 
 setTimeout('myrefresh()',4000); //指定固定时间刷新一次 
+    */
 </script>
 {% endblock %}
