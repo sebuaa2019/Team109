@@ -48,11 +48,12 @@
 	  </div>
 	</div>
   </div>
+
   <div class="col-md-3">
 	<div class="card">
 	  <div class="card-header">
-		<h4 class="card-title">Speed Indicator</h4>
-		<p class="card-category">You can View the speed here</p>
+		<h4 class="card-title">Speed Controller</h4>
+		<p class="card-category">You can change the speed here</p>
 	  </div>
 	  <div class="card-body">
 
@@ -85,23 +86,4 @@
 </div>
 
 <!-- Modal -->
-<script>
-  function api_move(type) {
-  $.ajax({
-  method: "POST",
-  url: "{% url 'api_move' %}",
-  dataType: 'json',
-  data: {
-  json_data: JSON.stringify({
-  "type": type,
-  // 填入你的数据
-  }),
-  csrfmiddlewaretoken: '{{ csrf_token }}'
-  },
-  success: function(response) {
-  console.log(response.status)
-  }
-  })
-  }
-</script>
 {% endblock %}

@@ -61,8 +61,10 @@ def move(request):
         write_file('s')
     elif type == 'Move Right':
         write_file('d')
+    elif type == 'KILL':
+        os.system('rosnode kill rviz')
     elif type == 'Begin':
-        pass
+        os.system('')
     elif type == 'Stop':
         write_file('t')
     elif type == 'Begin Mapping':
