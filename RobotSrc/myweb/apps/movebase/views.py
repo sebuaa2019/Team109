@@ -64,7 +64,7 @@ def move(request):
     elif type == 'KILL':
         os.system('rosnode kill rviz')
     elif type == 'Begin':
-        os.system('')
+        os.system('roslaunch my_map_package move_control.launch')
     elif type == 'Stop':
         write_file('t')
     elif type == 'Begin Mapping':
