@@ -78,28 +78,4 @@
         </div>
     </div>
 </div>
-<script language="JavaScript"> 
-    /*
-function myrefresh() 
-{ 
-    $.ajax({
-        method: "POST",
-        url: "{% url 'clean_info' %}",
-        dataType: 'json',
-        data: {
-            csrfmiddlewaretoken: '{{ csrf_token }}'
-        },
-        success: function(data) {
-            alert(data['info1']);
-            $('#clean-info0').html(1);
-            $('#clean-info1').html(data['info1']);
-            $('#clean-info2').html(data['info2']);
-            return;
-        }
-    });
-    window.location.reload(); 
-} 
-setTimeout('myrefresh()',4000); //指定固定时间刷新一次 
-    */
-</script>
 {% endblock %}

@@ -13,7 +13,7 @@ def update_log():
     try:
         file = open("/home/robot/.ros/log/latest/rosout.log")
     except:
-        file = open("C:/Users/jy0205/Desktop/软工/RobotSrc/rosout.log")
+        file = open("./rosout.log")
     li = []
     log_list = []
     for line in file.readlines():

@@ -22,25 +22,8 @@ def change_map():
     im = im.crop((400, 400, 600, 600))
     im.save('./static/img/map.jpg')
 
-def clean_info(request):
-    info = [0,0,0]
-    try:
-        info_str = logs.objects.order_by("-time").filter(info__contains='cleaninfo')[0].info
-        pat = re.match('.*cleaninfo ([0-9]+) ([0-9]+) ([0-9]+)',info_str)
-        if pat:
-            info[0] = pat.group(1)
-            info[1] = pat.group(2)
-            info[2] = pat.group(3)
-    except:
-        pass
-    data = {'info0':info[0],'info1':info[1],'info2':info[2]}
-    #return JsonResponse(json.dumps(data), content_type='application/json')
-    print(data)
-    return JsonResponse(data)
-
 
 def clean(request):
-    return
     update_log()
     info = [0,0,0]
     try:
@@ -54,7 +37,6 @@ def clean(request):
         pass
 
     if request.method == 'POST':
-        change_map()
         level = request.POST.get('level') 
         if type(level) is str and re.match('[1-5]', level) :
            #os.system("echo %s"%level)
