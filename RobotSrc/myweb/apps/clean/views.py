@@ -35,7 +35,6 @@ def clean(request):
         info[0] = pat.group(1)
         info[1] = pat.group(2)
         info[2] = pat.group(3)
-    print(info)
     change_map()
     update_log()
 
