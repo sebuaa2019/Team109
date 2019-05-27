@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm #, ModifyUserInfoForm
 from .models import UserInfo
 from django.contrib.auth.hashers import make_password
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 # Create your views here.
 
@@ -26,6 +26,24 @@ def user_logout(request):
     if request.method == "GET":
         logout(request)
         return HttpResponseRedirect(reverse("home"))
+
+
+# def user_info(request):
+#     if request.method == "GET":
+#         return render(request, "profile.html", {})
+#     elif request.method == "POST":
+#         user_info_form = ModifyUserInfoForm(request.POST, instance=request.user)
+#         if user_info_form.is_valid():
+#             user_info_form.save()
+#             return HttpResponse(
+#                 '{"status":"success"}',
+#                 content_type='application/json')
+#         else:
+#             return HttpResponse(
+#                 json.dumps(
+#                     user_info_form.errors),
+#                 content_type='application/json')
+
 
 
 def user_register(request):

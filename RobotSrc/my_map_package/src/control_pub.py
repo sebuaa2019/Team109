@@ -40,9 +40,9 @@ def talker():
         if c == 'd':
             now_y = -0.1
         if c == 'l':
-            now_z = 0.1
+            now_z = 0.25
         if c == 'r':
-            now_z = -0.1
+            now_z = -0.25
         if c == 't':
             now_x = 0
             now_y = 0

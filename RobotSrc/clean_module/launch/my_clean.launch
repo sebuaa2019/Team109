@@ -1,12 +1,6 @@
 <launch>
   <master auto="start"/>
 
-  <!-- Run wpb_home core -->
-  <node pkg="wpb_home_bringup" type="wpb_home_core" name="wpb_home_core" output="screen">
-    <param name="serial_port" type="string" value="/dev/ftdi"/> 
-    <rosparam file="$(find wpb_home_bringup)/config/wpb_home.yaml" command="load" />
-  </node>
-
   <!--- Run Rplidar -->
   <node name="rplidarNode"          pkg="rplidar_ros"  type="rplidarNode" output="screen">
     <param name="serial_port"         type="string" value="/dev/rplidar"/>  
@@ -55,6 +49,15 @@
   <!--- Run xfyun -->
   <node pkg="xfyun_waterplus" type="iat_node" name="xfyun_iat_node" output="screen">
       <param name="cn" type="bool" value="false"/> 
+  </node>
+ 
+  <arg name="mode" default="0"/>
+  <arg name="level" default="0"/>
+
+  <!--- Run cleanNode -->
+  <node pkg="clean_module" type="dfs_clean" name="dfs_clean" output="screen">
+      <param name="mode"      type="int" value="$(arg mode)"/>  
+      <param name="level"     type="int"    value="$(arg level)"/>
   </node>
 
 </launch>

@@ -1,0 +1,11 @@
+<launch>
+
+  <!-- wpb_home core-->
+  <node pkg="wpb_home_bringup" type="wpb_home_core" name="wpb_home_core" output="screen">
+    <param name="serial_port" type="string" value="/dev/ftdi"/> 
+    <rosparam file="$(find wpb_home_bringup)/config/wpb_home.yaml" command="load" />
+  </node>
+
+  <node pkg="my_map_package" type="control_pub.py" name="control_pub" />
+
+</launch>
