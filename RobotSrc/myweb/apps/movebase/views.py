@@ -8,13 +8,15 @@ import time
 
 # Create your views here.
 
-"""
-HOST = '127.0.0.1'  # 服务器的主机名或者 IP 地址
-PORT = 65432        # 服务器使用的端口
+try:
+    HOST = '127.0.0.1'  # 服务器的主机名或者 IP 地址
+    PORT = 65432        # 服务器使用的端口
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect((HOST, PORT))
-"""
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((HOST, PORT))
+except:
+    print("error")
+
 
 # def write_file(content):
 #     home_path = os.popen('echo $HOME').readlines()[0].strip()

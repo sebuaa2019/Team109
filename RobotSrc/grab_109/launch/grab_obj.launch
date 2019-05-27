@@ -23,10 +23,12 @@
 
   <include file="$(find wpb_home_bringup)/launch/normal.launch" /> -->
 
+<!--
   <node pkg="grab_109" type="grab_obj" name="grab_obj" output="screen">
     <param name="start" type="bool" value="true"/> 
     <rosparam file="$(find wpb_home_bringup)/config/wpb_home.yaml" command="load" />
   </node>
+-->
 
   <!--- Run Kinect -->
   <!--************************ kinect ************************-->

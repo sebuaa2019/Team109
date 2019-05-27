@@ -2,14 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="232cc933-4a85-4909-aa3d-139fbd3f0575" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/apps/logManage/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/logManage/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../grab_109/src/label/default.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../grab_109/launch/grab_obj.launch" beforeDir="false" afterPath="$PROJECT_DIR$/../grab_109/launch/grab_obj.launch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../grab_109/src/grab_obj.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../grab_109/src/grab_obj.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../grab_109/src/pic/pic_10.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../grab_109/src/pic/pic_10.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/clean/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/clean/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/fetch/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/fetch/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/movebase/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/movebase/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myweb/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myweb/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/introduction.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/introduction.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/movebase.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/movebase.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/clean.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/clean.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/grab.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/grab.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../网页测试.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../unit_test/网页测试.xlsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,8 +67,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/movebase/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
+            <state relative-caret-position="639">
+              <caret line="71" column="33" lean-forward="true" selection-start-line="71" selection-start-column="33" selection-end-line="71" selection-end-column="33" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -144,7 +148,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="400" />
     <option name="y" value="291" />
     <option name="width" value="1768" />
@@ -243,23 +247,22 @@
       <option name="presentableId" value="Default" />
       <updated>1558934539002</updated>
       <workItem from="1558934543438" duration="33000" />
-      <workItem from="1558934586007" duration="6174000" />
+      <workItem from="1558934586007" duration="6539000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6207000" />
+    <option name="totallyTimeSpent" value="6572000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17537314" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17537314" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.03253796" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.23210412" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -359,8 +362,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/movebase/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
+        <state relative-caret-position="639">
+          <caret line="71" column="33" lean-forward="true" selection-start-line="71" selection-start-column="33" selection-end-line="71" selection-end-column="33" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
