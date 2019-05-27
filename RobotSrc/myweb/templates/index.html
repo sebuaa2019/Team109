@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
 	<link rel="stylesheet" href="{% static 'css/ready.css' %}" />
 	<link rel="stylesheet" href="{% static 'css/demo.css' %}">
+
+
 </head>
 <body>
 	<div class="wrapper">
@@ -27,22 +29,26 @@
 			<nav class="navbar navbar-header navbar-expand-lg">
 				<div class="container-fluid">
 					
-					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-						<li class="nav-item dropdown hidden-caret">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="la la-envelope"></i>
-							</a>
-							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Action</a>
-								<a class="dropdown-item" href="#">Another action</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="#">Something else here</a>
+					<form class="navbar-left navbar-form nav-search mr-md-3" action="">
+						<div class="input-group">
+							<input type="text" placeholder="Search ..." class="form-control">
+							<div class="input-group-append">
+								<span class="input-group-text">
+									<i class="la la-search search-icon"></i>
+								</span>
 							</div>
-						</li>
+						</div>
+					</form>
+
+                    <li class="nav-item dropdown hidden-caret">
+                        <button class="btn btn-default btn-border btn-round" onclick="api_move('KILL');">KILL</button>
+                    </li>
+					<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+
 						<li class="nav-item dropdown hidden-caret">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="la la-bell"></i>
-								<span class="notification">3</span>
+								<!--<span class="notification">3</span>-->
 							</a>
 							<ul class="dropdown-menu notif-box" aria-labelledby="navbarDropdown">
 								<li>
@@ -56,7 +62,7 @@
 												<span class="block">
 													New user registered
 												</span>
-												<span class="time">5 minutes ago</span> 
+												<span class="time">5 minutes ago</span>
 											</div>
 										</a>
 										<a href="#">
@@ -65,7 +71,7 @@
 												<span class="block">
 													Rahmad commented on Admin
 												</span>
-												<span class="time">12 minutes ago</span> 
+												<span class="time">12 minutes ago</span>
 											</div>
 										</a>
 										<a href="#">
@@ -76,7 +82,7 @@
 												<span class="block">
 													Reza send messages to you
 												</span>
-												<span class="time">12 minutes ago</span> 
+												<span class="time">12 minutes ago</span>
 											</div>
 										</a>
 										<a href="#">
@@ -85,7 +91,7 @@
 												<span class="block">
 													Farrah liked Admin
 												</span>
-												<span class="time">17 minutes ago</span> 
+												<span class="time">17 minutes ago</span>
 											</div>
 										</a>
 									</div>
@@ -103,15 +109,15 @@
 										<div class="u-img"><img src="{% static 'img/profile.jpg' %}" alt="user"></div>
 										<div class="u-text">
 											<h4>Robot</h4>
-											<p class="text-muted">jy0205@buaa.edu.cn</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+											<p class="text-muted">jy0205@buaa.edu.cn</p><a href="/profile/" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
 										</div>
 									</li>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#"><i class="ti-user"></i> My Profile</a>
+									<a class="dropdown-item" href="/profile/"><i class="ti-user"></i> My Profile</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#"><i class="ti-settings"></i> Account Setting</a>
+									<a class="dropdown-item" href="/profile/"><i class="ti-settings"></i> Account Setting</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#"><i class="fa fa-power-off"></i> Logout</a>
+									<a class="dropdown-item" href="/logout/"><i class="fa fa-power-off"></i> Logout</a>
 								</ul>
 								<!-- /.dropdown-user -->
 							</li>
@@ -192,6 +198,13 @@
 								<span class="badge badge-count">5</span>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="#notify">
+								<i class="la la-bell"></i>
+								<p>Notifications</p>
+								<span class="badge badge-danger">9</span>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -210,6 +223,26 @@
 	</div>
 	<!-- Modal -->
 </body>
+
+<script>
+  function api_move(type) {
+  $.ajax({
+  method: "POST",
+  url: "{% url 'api_move' %}",
+  dataType: 'json',
+  data: {
+  json_data: JSON.stringify({
+  "type": type,
+  // 填入你的数据
+  }),
+  csrfmiddlewaretoken: '{{ csrf_token }}'
+  },
+  success: function(response) {
+  console.log(response.status)
+  }
+  })
+  }
+</script>
 
 <script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
 <script src="{% static 'js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
