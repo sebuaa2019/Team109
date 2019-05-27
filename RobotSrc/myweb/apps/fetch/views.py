@@ -16,7 +16,7 @@ def init(sel):
 def grab(request):
     pic = [] 
     for i in range(1, 4):
-        pic.append( [i, 'img/pic%d.jpg'%i] )
+        pic.append( [i, 'img/pic%d.png'%i] )
     res= ''
 
     if request.method == 'POST':
