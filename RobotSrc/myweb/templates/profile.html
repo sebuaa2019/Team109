@@ -1,28 +1,73 @@
 {% extends "index.html" %}
 {% load staticfiles %}
 {% block main %}
-    <div class="row">
-        <div class="col-lg-4 col-md-5">
-            <div class="card card-user">
-                <div class="image">
-                    <img src="assets/img/background.jpg" alt="..."/>
-                </div>
-                <div class="content">
-                    <div class="author">
-                      <img class="avatar border-white" src="assets/img/faces/face-2.jpg" alt="..."/>
-                      <h4 class="title">Chet Faker<br />
-                         <a href="#"><small>@chetfaker</small></a>
-                      </h4>
+<h4 class="page-title">My Profile</h4>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">Base Information</div>
+            </div>
+            <form class="form" id="jsEditUserForm"  action="/profile/">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="disableinput">User ID</label>
+                        <input type="text" class="form-control" id="disableinput" value="{{ request.user.username }}" disabled>
                     </div>
-                    <p class="description text-center">
-                        "I like the way you work it <br>
-                        No diggity <br>
-                        I wanna bag it up"
-                    </p>
-                </div>
-                <hr>
+                    <div class="form-group">
+                        <label for="email">Nickname</label>
+                        <input type="text" class="form-control" id="nickname"  value="{{ request.user.nick_name}}" placeholder="Enter Telephone">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="Email" value="{{ request.user.email}}" placeholder="Enter Email">
+                    </div>
 
+                    <div class="form-group">
+                        <label for="largeInput">TelePhone</label>
+                        <input type="text" class="form-control" id="telephone" value="{{ request.user.mobileNumber}}" placeholder="Enter Telephone">
+                    </div>
+
+                    <div class="form-check">
+                        <label>Gender</label><br/>
+                        <label class="form-radio-label">
+                            <input class="form-radio-input" type="radio" name="optionsRadios" value=""  checked="">
+                            <span class="form-radio-sign">Male</span>
+                        </label>
+                        <label class="form-radio-label ml-3">
+                            <input class="form-radio-input" type="radio" name="optionsRadios" value="">
+                            <span class="form-radio-sign">Female</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="largeInput">Age</label>
+                        <input type="text" class="form-control" id="Age" value="{{ request.user.Age}}" placeholder="Enter Age">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="largeInput">Address</label>
+                        <input type="text" class="form-control" id="address" value="{{ request.user.address}}" placeholder="Enter address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="comment">About me</label>
+                        <textarea class="form-control" id="comment" rows="3">
+
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1">Update your image</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    </div>
+            </div>
+                <div class="card-action">
+                    <button class="btn btn-success">Edit Profile</button>
+                </div>
+                {% csrf_token %}
+				</form>
             </div>
         </div>
+
     </div>
 {% endblock %}

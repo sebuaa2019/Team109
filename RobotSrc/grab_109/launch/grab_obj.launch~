@@ -23,11 +23,17 @@
 
   <include file="$(find wpb_home_bringup)/launch/normal.launch" /> -->
 
+  
+  <arg name="templpath" default="/home/robot/catkin_ws/src/team_109/grab_109/src/label/default.jpg" />
 
   <node pkg="grab_109" type="grab_obj" name="grab_obj" output="screen">
     <param name="start" type="bool" value="true"/> 
+
+    <param name="templpath" type="str" value="$(arg templpath)" />
+	
     <rosparam file="$(find wpb_home_bringup)/config/wpb_home.yaml" command="load" />
   </node>
+
 
   <!--- Run Kinect -->
   <!--************************ kinect ************************-->

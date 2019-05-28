@@ -33,16 +33,28 @@ def talker():
 
         if c == 'w':
             now_x = 0.1
+            now_y = 0
+            mow_z = 0
         if c == 'a':
+            now_x = 0
             now_y = 0.1
+            mow_z = 0
         if c == 's':
             now_x = -0.1
+            now_y = 0
+            mow_z = 0
         if c == 'd':
+            now_x = 0
             now_y = -0.1
+            mow_z = 0
         if c == 'l':
-            now_z = 0.1
+            now_x = 0
+            now_y = 0
+            now_z = 0.25
         if c == 'r':
-            now_z = -0.1
+            now_x = 0
+            now_y = 0
+            now_z = -0.25
         if c == 't':
             now_x = 0
             now_y = 0

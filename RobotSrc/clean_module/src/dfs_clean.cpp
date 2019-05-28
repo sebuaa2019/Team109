@@ -14,14 +14,12 @@
 int mode; // 0:dfs, 1:zigzag
 int level;
 void args_init(int argc, char** argv){
-    mode = 0, level = 0;
-    ROS_INFO("[dfs_clean] argc: %d\n", argc);
-    if (argc >= 2){
-        mode = argv[1][0] - '0';
-    }
-    if (argc >= 3){
-        level = argv[2][0] - '0';
-    }
+    ros::NodeHandle n_param("~");
+    mode = 1, level = 1;
+
+    n_param.param<int>("mode", mode, 0);
+    n_param.param<int>("level", level, 0);
+
     ROS_INFO("[dfs_clean] init args:[mode:%d][level:%d]\n", mode, level);
 }
 
@@ -94,7 +92,7 @@ bool move(int x, int y, MoveBaseClient &ac, tf::Quaternion &q, float du = 10.0){
 
     if (ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
         ROS_INFO("[dfs_clean] move to (%d,%d) succeeded\n", x, y);
-		L += 1 / 5.0;
+		L += 1;
         return 1;
     }
     else {
@@ -129,7 +127,7 @@ void dfs(int x, int y, MoveBaseClient &ac, int dir){
                     move(_x, _y, ac, q[_dir]);                
                 }
 
-				S += (1 / 5.0) * (1 / 5.0);
+		S += 1; //(1 / 5.0) * (1 / 5.0);
 
                 dfs(_x, _y, ac, _dir);
             }

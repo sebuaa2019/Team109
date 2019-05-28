@@ -4,15 +4,16 @@ from django.http import HttpResponse
 import os
 import re
 import datetime
-from logManage.models import logs
+from .models import logs
 
 # Create your views here.
+
 
 def update_log():
     try:
         file = open("/home/robot/.ros/log/latest/rosout.log")
     except:
-        file = open("D:/web/Apache24/htdocs/Team109/RobotSrc/rosout.log")
+        file = open("./rosout.log")
     li = []
     log_list = []
     for line in file.readlines():

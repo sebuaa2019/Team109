@@ -47,7 +47,7 @@ static float grab_gripper_value = 0.040;    //抓取物品时，手爪闭合后�
 
 
 // 默认标签
-static std::string default_label = "/home/robot/catkin_ws/src/team_109/grab_109/src/label/pic_10.jpg";//label_qhd_color.jpg";
+static std::string default_label = "/home/robot/catkin_ws/src/team_109/grab_109/src/label/default.jpg";
 
 #define STEP_WAIT           0
 //改变检测策略，先检测标签，进而检测平面
@@ -728,11 +728,17 @@ main(int argc, char** argv)
 	rgb_topic = "/kinect2/qhd/image_color";
 	pc_topic = "/kinect2/qhd/points";
 
-	std::string templpath = default_label;
-	
-	if(argc == 2)
-		templpath = argv[1];
+	std::string templpath = "";
+	//ros::param::get("templpath", templpath);
+	nh_param.param<std::string>("templpath", templpath, "");
 
+	printf("[grab_obj =====] templpath:%s\n", templpath.c_str());
+
+	//if(argc == 2){
+		//templpath = argv[1];
+					
+	
+	//}
 	//nh_param.param<std::string>("label_109", templpath, default_label);
 
 	//std::string templpath = "/home/robot/catkin_ws/src/team_109/grab_109/src/label/pic_10.jpg";//label_qhd_color.jpg";
