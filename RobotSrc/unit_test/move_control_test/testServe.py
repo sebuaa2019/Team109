@@ -19,7 +19,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             else:
                 # print('Received', repr(data))
                 c = data.decode()
-                if c == 'w':
-                    print('hhhhh')
+                print(c)
 
 
