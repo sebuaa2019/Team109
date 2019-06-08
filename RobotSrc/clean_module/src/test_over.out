@@ -1,0 +1,12 @@
+[test_over] 200 * 200 map:
+[test_over] (0, 0): 0
+[test_over] (0, 200): 1
+[test_over] (200, 0): 1
+[test_over] (200, 200): 1
+[test_over] (0, 199): 0
+[test_over] (199, 0): 0
+[test_over] (199, 199): 0
+[test_over] (-1, 199): 1
+[test_over] (199, -1): 1
+[test_over] (-1, -1): 1
+[test_over] (100, 100): 0
