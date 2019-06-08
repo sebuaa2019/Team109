@@ -162,10 +162,9 @@ void voiceCB(const std_msgs::String::ConstPtr &msg){
 
 void rosoutCB(const rosgraph_msgs::Log::ConstPtr& msg){
 	if (msg->level == rosgraph_msgs::Log::ERROR){
-        
+		printf("[dfs_clean] FIND LOG ERR\n");
     	logErr = 1;
 	}
-	printf("[dfs_clean] FIND LOG ERR\n");
 }
 
 int main(int argc, char** argv){

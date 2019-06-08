@@ -19,7 +19,6 @@ bool over(int x, int y){
 
 int main(int argc, char** argv){
     ros::init(argc, argv, "test_over");
-    args_init(argc, argv);
 
 	printf("[test_over] 200 * 200 map:\n");
 
