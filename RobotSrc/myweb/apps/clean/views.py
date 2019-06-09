@@ -25,14 +25,16 @@ def change_map():
 
 def clean(request):
     update_log()
-    info = [0,0,0]
+    info = [0,0,0,0]
     try:
         info_str = logs.objects.order_by("-time").filter(info__contains='cleaninfo')[0].info
         pat = re.match('.*cleaninfo ([0-9]+) ([0-9]+) ([0-9]+)',info_str)
         if pat:
-            info[0] = pat.group(1)
-            info[1] = pat.group(2)
-            info[2] = pat.group(3)
+            info[0] = int(pat.group(1)) * 0.2
+            info[1] = int(pat.group(2)) * 0.5
+            info_tmp = int(pat.group(3))
+            info[2] =  info_tmp // 60000
+            info[3] =  info_tmp % 60000 // 1000
     except:
         pass
 
