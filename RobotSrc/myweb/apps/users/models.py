@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class UserInfo(AbstractUser):
+    user_id = models.AutoField(primary_key=True)
     nick_name = models.CharField(max_length=20, verbose_name=u'昵称', default="")
     Age = models.IntegerField(default=0,verbose_name=u'年龄')
     gender = models.CharField(max_length=10, verbose_name=u'性别', choices=(('male', '男'), ('female', '女')),

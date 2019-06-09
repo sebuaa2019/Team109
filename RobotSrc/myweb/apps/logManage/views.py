@@ -65,8 +65,8 @@ def index(request):
         except InvalidPage:
             # 如果请求的页数不存在, 重定向页面
             return HttpResponse('找不到页面的内容')
-        except EmptyPage:
+        #except EmptyPage:
             # 如果请求的页数不在合法的页数范围内，返回结果的最后一页。
-            Logs = paginator.page(paginator.num_pages)
+        #    Logs = paginator.page(paginator.num_pages)
 
     return render(request, 'mylog.html', {'logs':Logs})

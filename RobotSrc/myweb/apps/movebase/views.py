@@ -15,7 +15,7 @@ try:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((HOST, PORT))
 except:
-    print("error")
+    pass
 
 
 # def write_file(content):
@@ -25,7 +25,10 @@ except:
 #     fw.write(content)
 
 def write_file(content):
-    s.sendall(content.encode())
+    try:
+        s.sendall(content.encode())
+    except:
+        pass
 
 
 def save_map():
