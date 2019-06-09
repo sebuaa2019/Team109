@@ -13,8 +13,7 @@
 
 int mode; // 0:dfs, 1:zigzag
 int level;
-void args_init(int argc, char** argv){
-    ros::NodeHandle n_param("~");
+void args_init(int argc, char** argv, ros::NodeHandle &n_param){
     mode = 1, level = 1;
 
     n_param.param<int>("mode", mode, 0);
@@ -162,17 +161,17 @@ void voiceCB(const std_msgs::String::ConstPtr &msg){
 
 void rosoutCB(const rosgraph_msgs::Log::ConstPtr& msg){
 	if (msg->level == rosgraph_msgs::Log::ERROR){
-        
+		printf("[dfs_clean][rosout] FIND LOG ERR\n");
     	logErr = 1;
 	}
-	printf("[dfs_clean] FIND LOG ERR\n");
 }
 
 int main(int argc, char** argv){
     ros::init(argc, argv, "dfs_clean");
-    args_init(argc, argv);
-
     ros::NodeHandle n;
+    
+    args_init(argc, argv, n);
+
     ros::Subscriber sub_sr = n.subscribe("/xfyun/iat", 10, voiceCB);
     ros::Subscriber rosout_sb = n.subscribe("/rosout", 0, rosoutCB);
 

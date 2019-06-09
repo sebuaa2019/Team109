@@ -20,4 +20,4 @@ xxxx
 1556969606.735466772 INFO [/tmp/binarydeb/ros-kinetic-rviz-1.12.16/src/rviz/ogre_helpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout]  cleaninfo 1 2 3
 1556969616.735466772 INFO [/tz-1.12.16/src/rvizlpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout]  cleaninfo 0 2 0
 1556969716.735466772 INFO [/tz-1.12.16/src/rvizlpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout]  cleaninfo 0 2 10
-
+1557979716.735466772 INFO [/tz-1.12.16/src/rvizlpers/render_system.cpp:211(RenderSystem::detectGlVersion) [topics: /rosout]  cleaninfo 42 52 123423430
